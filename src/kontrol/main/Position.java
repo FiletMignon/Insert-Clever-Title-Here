@@ -116,22 +116,22 @@ public class Position {
 	}
 
 	public void forward(float distance){
-		x -= distance * (float)Math.sin(Math.toRadians(xRot));
+		x -= distance * (float)Math.sin(Math.toRadians(yRot));
 		//camPos[1] += distance * (float)Math.tan(Math.toRadians(pitch));
-		z += distance * (float)Math.cos(Math.toRadians(xRot));
+		z += distance * (float)Math.cos(Math.toRadians(yRot));
 	}
 	public void backward(float distance){
-		x += distance * (float)Math.sin(Math.toRadians(xRot));
+		x += distance * (float)Math.sin(Math.toRadians(yRot));
 		//camPos[1] -= distance * (float)Math.tan(Math.toRadians(pitch));
-		z -= distance * (float)Math.cos(Math.toRadians(xRot));
+		z -= distance * (float)Math.cos(Math.toRadians(yRot));
 	}
 	public void strafeL(float distance){
-		x -= distance * (float)Math.sin(Math.toRadians(xRot-90));
-		z += distance * (float)Math.cos(Math.toRadians(xRot-90));
+		x -= distance * (float)Math.sin(Math.toRadians(yRot-90));
+		z += distance * (float)Math.cos(Math.toRadians(yRot-90));
 	}
 	public void strafeR(float distance){
-		x -= distance * (float)Math.sin(Math.toRadians(xRot+90));
-		z += distance * (float)Math.cos(Math.toRadians(xRot+90));
+		x -= distance * (float)Math.sin(Math.toRadians(yRot+90));
+		z += distance * (float)Math.cos(Math.toRadians(yRot+90));
 	}
 	public void up(float distance){
 		y -= distance;
