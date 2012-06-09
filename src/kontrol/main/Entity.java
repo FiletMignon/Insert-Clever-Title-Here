@@ -9,6 +9,9 @@ public abstract class Entity {
 	protected Texture texture;
 	protected BoundingBox boundingBox;
 	protected Position pos;
+	protected Velocity vel;
+	protected Acceleration acc;
+	protected Force force;
 	
 	/**
 	 * 
@@ -173,7 +176,7 @@ public abstract class Entity {
 		float[] whdThis = {getBounds().getWidth()/2, getBounds().getHeight()/2, getBounds().getDepth()/2};
 
 		for(int i = 0; i < 3; i++){
-			if(xyzPos[i] < whdThis[i]+xyzThis[i] && xyzPos[i] > whdThis[i]-xyzThis[i]){
+			if( xyzPos[i] > whdThis[i] - xyzThis[i]){
 				System.out.println("Point Collision Detected!");
 				return true;
 			}
