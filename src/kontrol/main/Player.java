@@ -45,17 +45,12 @@ public class Player extends Entity {
         	getPosition().up(speed);
         }
         if(Mouse.isButtonDown(0)){
+        	getPosition().addXRot(-Mouse.getDY()*speed);
+        	getPosition().addYRot(Mouse.getDX()*speed);
     		Mouse.setGrabbed(true);
         }
         else if(!Mouse.isButtonDown(0)){
     		Mouse.setGrabbed(false);
-        }
-        if(Mouse.isButtonDown(1)){
-        	getPosition().addZRot(-Mouse.getDY()*speed);
-        }
-        else if(!Mouse.isButtonDown(1)){
-        	getPosition().addXRot(Mouse.getDX()*speed);
-        	getPosition().addYRot(-Mouse.getDY()*speed);
         }
 	}
 	

@@ -32,8 +32,8 @@ public class Screen {
         init(title);
         Cube cube1 = new Cube("", new Position( 2, 0, -8));
         Cube cube2 = new Cube("", new Position(-2, 0, -8));
-        cube1.velocityX(-0.01f);
-        cube2.velocityX( 0.01f);
+        cube1.setVelocity(-0.01f, 0.0f, 0.0f);
+        cube2.setVelocity( 0.01f, 0.0f, 0.0f);
         enviro.addPlayer(0, new Player("Player", new Position(0,0,0), "Test Dummy"));
         enviro.addEntity(cube1);
         enviro.addEntity(cube2);

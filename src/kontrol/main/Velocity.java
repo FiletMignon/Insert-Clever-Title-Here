@@ -12,13 +12,16 @@ public class Velocity {
 	protected float xVel;
 	protected float yVel;
 	protected float zVel;
-	/**
-	 * 
-	 */
+	
 	public Velocity() {
 		xVel = 0;
 		yVel = 0;
 		zVel = 0;
+	}
+	public Velocity(float xVel, float yVel, float zVel) {
+		this.xVel = xVel;
+		this.yVel = yVel;
+		this.zVel = zVel;
 	}
 	/**
 	 * @param X direction velocity, Y Direction Velocity, Z Direction Velocity
@@ -39,7 +42,9 @@ public class Velocity {
 	public float getZVelocity(){
 		return zVel;
 	}
-	
-	
-
+	public void addVelocity(Acceleration accel){
+		xVel = xVel + accel.getXAcceleration() * 0.06f;
+		yVel = yVel + accel.getYAcceleration() * 0.06f;
+		zVel = zVel + accel.getZAcceleration() * 0.06f;
+	}
 }

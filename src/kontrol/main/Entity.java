@@ -12,6 +12,7 @@ public abstract class Entity {
 	protected Velocity vel;
 	protected Acceleration acc;
 	protected Force force;
+	protected float mass;
 	
 	/**
 	 * 
@@ -31,6 +32,8 @@ public abstract class Entity {
 		}
 		this.boundingBox = boundingBox;
 		this.pos = pos;
+		vel = new Velocity();
+		acc = new Acceleration();
 	}
 	/**
 	 * Get the current Position of this entity
@@ -135,7 +138,7 @@ public abstract class Entity {
 	 */
 	public boolean isCollidedWith(Entity ent){
 		float[] xyzOther = {ent.getPosition().x(), ent.getPosition().y(), ent.getPosition().z()};
-		float[] whdOther = {ent.getBounds().getWidth()/2, ent.getBounds().getHeight()/2, ent.getBounds().getDepth()/2};
+		float[] whdOther = {ent.getBounds().getWidth(), ent.getBounds().getHeight(), ent.getBounds().getDepth()};
 		
 		if(isCollidedWith(new Position(xyzOther[0]+whdOther[0], xyzOther[1]+whdOther[1], xyzOther[2]+whdOther[2]))){
 			return true;
@@ -173,12 +176,14 @@ public abstract class Entity {
 	public boolean isCollidedWith(Position pos){
 		float[] xyzPos = {pos.x(), pos.y(), pos.z()};
 		float[] xyzThis = {getPosition().x(), getPosition().y(), getPosition().z()};
-		float[] whdThis = {getBounds().getWidth()/2, getBounds().getHeight()/2, getBounds().getDepth()/2};
+		float[] whdThis = {getBounds().getWidth(), getBounds().getHeight(), getBounds().getDepth()};
 
 		for(int i = 0; i < 3; i++){
-			if( xyzPos[i] > whdThis[i] - xyzThis[i]){
-				System.out.println("Point Collision Detected!");
-				return true;
+			if(xyzPos[i] > xyzThis[i] - whdThis[i]){
+				if(xyzPos[i] < xyzThis[i] + whdThis[i]){
+					System.out.println(xyzPos[0] + " - Point Collision Detected!");
+					return true;
+				}
 			}
 		}
 		return false;

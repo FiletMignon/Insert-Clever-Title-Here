@@ -9,6 +9,11 @@ public class Acceleration {
 		yAcc=0;
 		zAcc=0;
 	}
+	public Acceleration(float xAcc, float yAcc, float zAcc) {
+		this.xAcc = xAcc;
+		this.yAcc = yAcc;
+		this.zAcc = zAcc;
+	}
 	public void setAcceleration(float xAcc, float yAcc, float zAcc){
 		this.xAcc = xAcc;
 		this.yAcc = yAcc;
@@ -20,8 +25,12 @@ public class Acceleration {
 	public float getYAcceleration(){
 		return yAcc;
 	}
-	public float getzAcceleration(){
+	public float getZAcceleration(){
 		return zAcc;
 	}
-
+	public void setAccelerationWithForce(Force force, float mass){
+		xAcc = mass/force.getXForce();
+		yAcc = mass/force.getYForce();
+		zAcc = mass/force.getZForce();
+	}
 }
