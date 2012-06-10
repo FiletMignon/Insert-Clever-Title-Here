@@ -23,7 +23,7 @@ public class Cube extends Entity{
 		}
 	}
 	public void setForce(Position position) {
-		force.setForceTo(getPosition(), position, 9.8f);
+		force.setForceTo(this.getPosition(), position, 9.8f);
 		acc.setAccelerationFromForce(force, mass);
 		vel.accelerate(acc);
 	}
