@@ -12,17 +12,19 @@ public class Cube extends Entity{
 		vel = new Velocity();
 	}
 
+	private boolean move = true;
 	public void act(Environment enviro){
-		force.setForce(0f,0f,-16f);
+		if(move){
+			setForce(pos.inverse());
+			applyVelocity();
+		}
 		int entityAmount = enviro.getEntityAmount();
 		for(int i = 0; i < entityAmount; i++){
 			Entity indexedEnt = enviro.getEntity(i);
-			if(!isCollidedWith(indexedEnt)){
-				applyVelocity();
-			}
-			else{
-				this.vel.setVelocity(0, 0, 0);
-			//	System.out.println("Collide");
+			if(!indexedEnt.name.equals(name)){
+				if(isCollidedWith(indexedEnt)){
+					move = false;
+				}
 			}
 		}
 	}

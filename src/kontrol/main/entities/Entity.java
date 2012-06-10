@@ -20,6 +20,9 @@ public abstract class Entity {
 	protected Acceleration acc;
 	protected Force force;
 	protected float mass;
+	protected String name;
+	
+	protected static int totalEntities = 1;
 	
 	/**
 	 * 
@@ -43,6 +46,7 @@ public abstract class Entity {
 		acc = new Acceleration();
 		force = new Force();
 		mass = 100;
+		name = "Entity#" + totalEntities;
 	}
 	/**
 	 * Get the current Position of this entity
@@ -138,18 +142,41 @@ public abstract class Entity {
 	}
 	
 	public boolean isCollidedWith(Entity other){
-		float xDistance = (float)Math.abs(this.getPosition().x() - other.getPosition().x());
-		float yDistance = (float)Math.abs(this.getPosition().y() - other.getPosition().y());
-		float zDistance = (float)Math.abs(this.getPosition().z() - other.getPosition().z());
-		System.out.println(xDistance + " " + yDistance + " " + zDistance);
-		if(xDistance <= ((this.boundingBox.getWidth()/2) + (other.boundingBox.getWidth()/2)) && 
-				yDistance <= ((this.boundingBox.getHeight()/2) + (other.boundingBox.getHeight()/2)) &&
-				zDistance <= ((this.boundingBox.getDepth()/2) + (other.boundingBox.getDepth()/2)))
-		{
-			return true;
-		}
-		else
-			return false;
+//		float xDistance = (float)Math.abs(this.getPosition().x() - other.getPosition().x());
+//		float yDistance = (float)Math.abs(this.getPosition().y() - other.getPosition().y());
+//		float zDistance = (float)Math.abs(this.getPosition().z() - other.getPosition().z());
+//		System.out.println(pos.distanceTo(other.getPosition()));
+//		if(xDistance <= ((this.boundingBox.getWidth()/2) + (other.boundingBox.getWidth()/2)) && 
+//				yDistance <= ((this.boundingBox.getHeight()/2) + (other.boundingBox.getHeight()/2)) &&
+//				zDistance <= ((this.boundingBox.getDepth()/2) + (other.boundingBox.getDepth()/2)))
+//		{
+//			return true;
+//		}
+//		else
+//			return false;
+
+//		System.out.println(pos.distanceTo(other.getPosition()));
+//	    if ( Math.abs(getPosition().x() - other.getPosition().x()) > (getBounds().getWidth() + other.getBounds().getWidth() )) return false;
+//	    if ( Math.abs(getPosition().y() - other.getPosition().y()) > (getBounds().getHeight() + other.getBounds().getHeight() )) return false;
+//	    if ( Math.abs(getPosition().z() - other.getPosition().z()) > (getBounds().getDepth() + other.getBounds().getDepth() )) return false;
+//		System.out.println("Collided!");
+//	    return true;
+
+		Position minVertexThis = getBounds().getMinVertex(getPosition());
+		Position maxVertexThis = getBounds().getMaxVertex(getPosition());
+		
+		Position minVertexOther = other.getBounds().getMinVertex(other.getPosition());
+		Position maxVertexOther = other.getBounds().getMaxVertex(other.getPosition());
+
+		//Check if BB1's max is greater than BB2's min and BB1's min is less than BB2's max
+
+		System.out.println(pos.distanceTo(other.getPosition()));
+		return(maxVertexThis.x() > minVertexOther.x() && 
+				minVertexThis.x() < maxVertexOther.x() &&
+			    maxVertexThis.y() > minVertexOther.y() &&
+			    minVertexThis.y() < maxVertexOther.y() &&
+			    maxVertexThis.z() > minVertexOther.z() &&
+			    minVertexThis.z() < maxVertexOther.z());
 	}
 	/**
 	 * This method will return whether or not this entity and
@@ -159,20 +186,6 @@ public abstract class Entity {
 	 * @return Whether or not the entities are colliding
 	 */
 /*	public boolean isCollidedWith(Entity ent){
-		Position minVertexThis = getBounds().getMinVertex(getPosition());
-		Position maxVertexThis = getBounds().getMaxVertex(getPosition());
-		
-		Position minVertexOther = ent.getBounds().getMinVertex(ent.getPosition());
-		Position maxVertexOther = ent.getBounds().getMaxVertex(ent.getPosition());
-
-		//Check if BB1's max is greater than BB2's min and BB1's min is less than BB2's max
-
-		return(maxVertexThis.x() > minVertexOther.x() && 
-				minVertexThis.x() < maxVertexOther.x() &&
-			    maxVertexThis.y() > minVertexOther.y() &&
-			    minVertexThis.y() < maxVertexOther.y() &&
-			    maxVertexThis.z() > minVertexOther.z() &&
-			    minVertexThis.z() < maxVertexOther.z());
 	}*/
 	/**
 	 * This method will return whether or not this entity and
@@ -197,13 +210,13 @@ public abstract class Entity {
 		return false;
 	}
 	public void setForce(Position position) {
-		force.setForceTo(this.getPosition(), position, 9.8f);
+		force.setForceTo(getPosition(), position, 9.8f);
 		acc.setAccelerationFromForce(force, mass);
 		vel.accelerate(acc);
 	}
 	public void applyVelocity(){
-		pos.x(vel.getXVelocity());
-		pos.y(vel.getYVelocity());
-		pos.z(vel.getZVelocity());
+		pos.setX(pos.x()+vel.getXVelocity());
+		pos.setY(pos.y()+vel.getYVelocity());
+		pos.setZ(pos.z()+vel.getZVelocity());
 	}
 }

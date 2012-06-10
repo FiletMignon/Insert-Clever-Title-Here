@@ -10,15 +10,15 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 public class Player extends Entity {
-	private String name;
+	private String playerName;
 	
 	private WeaponSet[] weapons;
 	private int currentWeaponType;
 	private int currentWeaponIndex;
 	
-	public Player(String texture, Position pos, String name) {
+	public Player(String texture, Position pos, String playerName) {
 		super(texture, new BoundingBox(1, 1, 1), pos);
-		this.name = name;
+		this.playerName = playerName;
 		weapons = new WeaponSet[9];
 		for(int i = 0; i < 9; i++){
 			weapons[i] = new WeaponSet();
@@ -32,8 +32,8 @@ public class Player extends Entity {
 	 * Gets the name of the player
 	 * @return The name of the player
 	 */
-	public String getName(){
-		return name;
+	public String getPlayerName(){
+		return playerName;
 	}
 	public void render(){
 		//Render Nothing

@@ -19,32 +19,14 @@ public class Position {
 		this.yRot = yRot;
 		this.zRot = zRot;
 	}
-	/**
-	 * Moves the position along the x coordinate
-	 * @param distance The distance to move along x
-	 * @return The new value of x
-	 */
-	public float x(float distance){
-		x += distance;
-		return x;
+	public void setX(float coord){
+		x = coord;
 	}
-	/**
-	 * Moves the position along the y coordinate
-	 * @param distance The distance to move along y
-	 * @return The new value of y
-	 */
-	public float y(float distance){
-		y += distance;
-		return y;
+	public void setY(float coord){
+		y = coord;
 	}
-	/**
-	 * Moves the position along the z coordinate
-	 * @param distance The distance to move along z
-	 * @return The new value of z
-	 */
-	public float z(float distance){
-		z += distance;
-		return z;
+	public void setZ(float coord){
+		z = coord;
 	}
 	/**
 	 * Get the x coordinate
@@ -141,5 +123,12 @@ public class Position {
 	}
 	public Position inverse() {
 		return new Position(-x(), -y(), -z());
+	}
+	public float distanceTo(Position pos){
+		double sqX = Math.pow(pos.x()-x(), 2);
+		double sqY = Math.pow(pos.y()-y(), 2);
+		double sqZ = Math.pow(pos.z()-z(), 2);
+		
+		return (float) Math.sqrt(sqX+sqY+sqZ);
 	}
 }
