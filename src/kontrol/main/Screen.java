@@ -28,12 +28,12 @@ public class Screen {
 	public Screen(int width, int height, String title){
 		this.width = width;
 		this.height = height;
-		enviro = new Environment(10, 10, 10);
+		enviro = new Environment(100, 100, 100);
         init(title);
-        Cube cube1 = new Cube("", new Position( 2, 0, -8));
-        Cube cube2 = new Cube("", new Position(-2, 0, -8));
-        cube1.setVelocity(-0.01f, 0.0f, 0.0f);
-        cube2.setVelocity( 0.01f, 0.0f, 0.0f);
+        Cube cube1 = new Cube("", new Position( 20, 0, -8));
+        Cube cube2 = new Cube("", new Position(-20, 0, -8));
+        cube1.setForce(cube2.getPosition());
+        cube2.setForce(cube1.getPosition());
         enviro.addPlayer(0, new Player("Player", new Position(0,0,0), "Test Dummy"));
         enviro.addEntity(cube1);
         enviro.addEntity(cube2);

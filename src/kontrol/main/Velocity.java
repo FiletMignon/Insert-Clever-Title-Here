@@ -42,7 +42,7 @@ public class Velocity {
 	public float getZVelocity(){
 		return zVel;
 	}
-	public void addVelocity(Acceleration accel){
+	public void accelerate(Acceleration accel){
 		xVel = xVel + accel.getXAcceleration() * 0.06f;
 		yVel = yVel + accel.getYAcceleration() * 0.06f;
 		zVel = zVel + accel.getZAcceleration() * 0.06f;

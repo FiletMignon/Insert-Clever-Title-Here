@@ -28,9 +28,9 @@ public class Acceleration {
 	public float getZAcceleration(){
 		return zAcc;
 	}
-	public void setAccelerationWithForce(Force force, float mass){
-		xAcc = mass/force.getXForce();
-		yAcc = mass/force.getYForce();
-		zAcc = mass/force.getZForce();
+	public void setAccelerationFromForce(Force force, float mass){
+		xAcc = force.getXForce() / mass;
+		yAcc = force.getYForce() / mass;
+		zAcc = force.getZForce() / mass;
 	}
 }
