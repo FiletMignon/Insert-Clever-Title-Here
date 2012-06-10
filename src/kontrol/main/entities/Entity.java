@@ -134,7 +134,7 @@ public abstract class Entity {
 	 * @param enviro The environment this entity is in
 	 */
 	public void act(Environment enviro){
-		//Do nothing...
+		//Do everything
 	}
 	
 	public boolean isCollidedWith(Entity other){
