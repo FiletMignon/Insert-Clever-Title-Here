@@ -1,4 +1,4 @@
-package kontrol.main;
+package kontrol.main.util;
 
 public class Position {
 	private float x,y,z;

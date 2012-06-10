@@ -1,4 +1,7 @@
-package kontrol.main;
+package kontrol.main.physics;
+
+import kontrol.main.util.Position;
+
 
 public class Force {
 	private float xFor;

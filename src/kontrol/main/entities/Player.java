@@ -1,4 +1,8 @@
-package kontrol.main;
+package kontrol.main.entities;
+
+
+import kontrol.main.physics.BoundingBox;
+import kontrol.main.util.Position;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;

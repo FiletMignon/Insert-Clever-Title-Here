@@ -1,4 +1,10 @@
-package kontrol.main;
+package kontrol.main.entities;
+
+import kontrol.main.Environment;
+import kontrol.main.physics.BoundingBox;
+import kontrol.main.physics.Velocity;
+import kontrol.main.util.Position;
+
 
 public class Cube extends Entity{
 	public Cube(String texture, Position pos) {
@@ -12,7 +18,7 @@ public class Cube extends Entity{
 		int entityAmount = enviro.getEntityAmount();
 		for(int i = 0; i < entityAmount; i++){
 			Entity indexedEnt = enviro.getEntity(i);
-			if(!isCollidedWith(indexedEnt) && (vel.xVel!=0 && vel.yVel!=0 && vel.zVel!=0)){
+			if(!isCollidedWith(indexedEnt) && (vel.getXVelocity()!=0 && vel.getYVelocity()!=0 && vel.getZVelocity()!=0)){
 				applyVelocity();
 			}
 			else{

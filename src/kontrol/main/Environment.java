@@ -2,6 +2,11 @@ package kontrol.main;
 
 import java.util.ArrayList;
 
+import kontrol.main.entities.Entity;
+import kontrol.main.entities.Player;
+import kontrol.main.util.Position;
+
+
 public class Environment {
 	private float width, height, depth;
 	private ArrayList<Entity> entities;

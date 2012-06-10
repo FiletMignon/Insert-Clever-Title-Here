@@ -2,6 +2,11 @@ package kontrol.main;
 
 import java.nio.FloatBuffer;
 
+import kontrol.main.entities.Cube;
+import kontrol.main.entities.Player;
+import kontrol.main.util.Position;
+
+
 import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
