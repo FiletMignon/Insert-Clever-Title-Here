@@ -30,10 +30,16 @@ public class Screen {
 		this.height = height;
 		enviro = new Environment(100, 100, 100);
         init(title);
-        Cube cube1 = new Cube("", new Position( 20, 0, -8));
-        Cube cube2 = new Cube("", new Position(-20, 0, -8));
-        cube1.setForce(cube2.getPosition());
-        cube2.setForce(cube1.getPosition());
+        Cube cube1 = new Cube("", new Position( 2, 0, -16));
+        Cube cube2 = new Cube("", new Position(-2, 0, -16));
+
+        System.out.println(cube1.getPosition().x() + " || " + cube2.getPosition().x());
+        System.out.println(cube1.getPosition().y() + " || " + cube2.getPosition().y());
+        System.out.println(cube1.getPosition().z() + " || " + cube2.getPosition().z());
+        
+//        cube1.setForce(new Position(-0.0000001f, 0, 0));
+//        cube2.setForce(new Position( 0.0000001f, 0, 0));
+        
         enviro.addPlayer(0, new Player("Player", new Position(0,0,0), "Test Dummy"));
         enviro.addEntity(cube1);
         enviro.addEntity(cube2);
