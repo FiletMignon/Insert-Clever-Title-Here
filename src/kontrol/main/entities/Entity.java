@@ -67,9 +67,9 @@ public abstract class Entity {
 	 * Override this method to render the correct entity
 	 */
 	public void render(){
-		float width = boundingBox.getWidth();
-		float height = boundingBox.getHeight();
-		float depth = boundingBox.getDepth();
+		float width = boundingBox.getWidth()/2;
+		float height = boundingBox.getHeight()/2;
+		float depth = boundingBox.getDepth()/2;
 		GL11.glTranslatef(pos.x(), pos.y(), pos.z());
 		texture.bind();
 	    GL11.glBegin(GL11.GL_QUADS);                        // Draw A Quad
