@@ -41,10 +41,10 @@ public class Player extends Entity {
         if(Keyboard.isKeyDown(Keyboard.KEY_D)){ 
         	getPosition().strafeR(speed);
         }
-        if(Keyboard.isKeyDown(Keyboard.KEY_Q)){  
+        if(Keyboard.isKeyDown(Keyboard.KEY_Z)){  
         	getPosition().down(speed);
         }
-        if(Keyboard.isKeyDown(Keyboard.KEY_Z)){    
+        if(Keyboard.isKeyDown(Keyboard.KEY_Q)){  
         	getPosition().up(speed);
         }
         if(Mouse.isButtonDown(0)){

@@ -139,4 +139,7 @@ public class Position {
 	public void down(float distance){
 		y += distance;
 	}
+	public Position inverse() {
+		return new Position(-x(), -y(), -z());
+	}
 }

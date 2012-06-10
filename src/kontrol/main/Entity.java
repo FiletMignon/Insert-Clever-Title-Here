@@ -146,7 +146,7 @@ public abstract class Entity {
 		Position maxVertexOther = ent.getBounds().getMaxVertex(ent.getPosition());
 
 		//Check if BB1's max is greater than BB2's min and BB1's min is less than BB2's max
-		  
+
 		return(maxVertexThis.x() > minVertexOther.x() && 
 				minVertexThis.x() < maxVertexOther.x() &&
 			    maxVertexThis.y() > minVertexOther.y() &&
@@ -177,7 +177,7 @@ public abstract class Entity {
 		return false;
 	}
 	public void setForce(Position position) {
-		force.setForceTo(this.getPosition(), position, 100f);
+		force.setForceTo(this.getPosition(), position, 9.8f);
 		acc.setAccelerationFromForce(force, mass);
 		vel.accelerate(acc);
 	}

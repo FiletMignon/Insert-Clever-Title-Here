@@ -12,12 +12,11 @@ public class Cube extends Entity{
 		int entityAmount = enviro.getEntityAmount();
 		for(int i = 0; i < entityAmount; i++){
 			Entity indexedEnt = enviro.getEntity(i);
-			if(!isCollidedWith(indexedEnt)){
-//				vel.setVelocity(0, 0, 0);
-				System.out.println("COLLIDED");
+			if(!isCollidedWith(indexedEnt) && (vel.xVel!=0 && vel.yVel!=0 && vel.zVel!=0)){
+				applyVelocity();
 			}
 			else{
-				applyVelocity();
+				System.out.println("Collide");
 			}
 		}
 	}
