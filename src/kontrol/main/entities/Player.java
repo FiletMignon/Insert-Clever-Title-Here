@@ -3,6 +3,7 @@ package kontrol.main.entities;
 
 import kontrol.main.physics.BoundingBox;
 import kontrol.main.util.Position;
+import kontrol.main.weapons.*;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -10,9 +11,21 @@ import org.lwjgl.opengl.GL11;
 
 public class Player extends Entity {
 	private String name;
+	
+	private WeaponSet[] weapons;
+	private int currentWeaponType;
+	private int currentWeaponIndex;
+	
 	public Player(String texture, Position pos, String name) {
 		super(texture, new BoundingBox(1, 1, 1), pos);
 		this.name = name;
+		weapons = new WeaponSet[9];
+		for(int i = 0; i < 9; i++){
+			weapons[i] = new WeaponSet();
+		}
+		currentWeaponType = 0;
+		currentWeaponIndex = 0;
+		weapons[Weapon.WEPTYPE_PISTOLS].addWeapon(new Pistol());
 	}
 
 	/**
@@ -28,11 +41,21 @@ public class Player extends Entity {
 	public void act(){
 		input();
 	}
-	private float speed = 0.05f;
+	private float speed = 0.05f;//The speed of the player
+	/**
+	 * Handle the input of the player and
+	 * move accordingly
+	 */
 	public void input(){
     	getPosition().addXRot(-Mouse.getDY()*speed);
     	getPosition().addYRot(Mouse.getDX()*speed);
 		Mouse.setGrabbed(true);
+        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
+        	speed = 0.25f;
+        }
+        if (!Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
+        	speed = 0.05f;
+        }
         if (Keyboard.isKeyDown(Keyboard.KEY_W)){
         	getPosition().forward(speed);
         }
@@ -54,12 +77,24 @@ public class Player extends Entity {
         if(Mouse.isButtonDown(0)){
     		fire();
         }
+        if(Mouse.isButtonDown(1)){
+    		altFire();
+        }
 
 	}
-	
+
+	/**
+	 * Fire the current weapon.
+	 */
 	private void fire() {
-		Bullet b = new Bullet("bullet", new BoundingBox(.1f,.1f,.1f),getPosition());
-		
+		weapons[currentWeaponType].getWeapon(currentWeaponIndex).fire();
+	}
+	/**
+	 * Fire the alternate fire of the current
+	 * weapon.
+	 */
+	private void altFire() {
+		weapons[currentWeaponType].getWeapon(currentWeaponIndex).altFire();
 	}
 
 	/**
