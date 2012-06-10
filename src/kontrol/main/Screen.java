@@ -40,14 +40,17 @@ public class Screen {
         System.out.println(cube1.getPosition().y() + " || " + cube2.getPosition().y());
         System.out.println(cube1.getPosition().z() + " || " + cube2.getPosition().z());
         
-        cube1.setForce(cube2.getPosition());
-        cube2.setForce(cube1.getPosition());
+
         
         enviro.addPlayer(0, new Player("Player", new Position(0,0,0), "Test Dummy"));
         enviro.addEntity(cube1);
         enviro.addEntity(cube2);
 		running = true;
         while(running){
+        	
+            cube1.setForce(cube2.getPosition());
+            cube2.setForce(cube1.getPosition());
+        	
             if(Display.isCloseRequested())
             	running=false;
             inputHandling();

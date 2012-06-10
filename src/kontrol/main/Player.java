@@ -26,6 +26,9 @@ public class Player extends Entity {
 	}
 	private float speed = 0.05f;
 	public void input(){
+    	getPosition().addXRot(-Mouse.getDY()*speed);
+    	getPosition().addYRot(Mouse.getDX()*speed);
+		Mouse.setGrabbed(true);
         if (Keyboard.isKeyDown(Keyboard.KEY_W)){
         	getPosition().forward(speed);
         }
@@ -41,19 +44,20 @@ public class Player extends Entity {
         if(Keyboard.isKeyDown(Keyboard.KEY_Q)){  
         	getPosition().down(speed);
         }
-        if(Keyboard.isKeyDown(Keyboard.KEY_E)){    
+        if(Keyboard.isKeyDown(Keyboard.KEY_Z)){    
         	getPosition().up(speed);
         }
         if(Mouse.isButtonDown(0)){
-        	getPosition().addXRot(-Mouse.getDY()*speed);
-        	getPosition().addYRot(Mouse.getDX()*speed);
-    		Mouse.setGrabbed(true);
+    		fire();
         }
-        else if(!Mouse.isButtonDown(0)){
-    		Mouse.setGrabbed(false);
-        }
+
 	}
 	
+	private void fire() {
+		Bullet b = new Bullet("bullet", new BoundingBox(.1f,.1f,.1f),getPosition());
+		
+	}
+
 	/**
 	 * Used before rendering to revolve the world around you
 	 * in order to get a perspective of things  :P
