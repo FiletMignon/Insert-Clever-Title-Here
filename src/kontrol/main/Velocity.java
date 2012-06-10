@@ -43,8 +43,8 @@ public class Velocity {
 		return zVel;
 	}
 	public void accelerate(Acceleration accel){
-		xVel = xVel + accel.getXAcceleration() * 0.06f;
-		yVel = yVel + accel.getYAcceleration() * 0.06f;
-		zVel = zVel + accel.getZAcceleration() * 0.06f;
+		xVel = xVel + accel.getXAcceleration() * 0.01f;
+		yVel = yVel + accel.getYAcceleration() * 0.01f;
+		zVel = zVel + accel.getZAcceleration() * 0.01f;
 	}
 }

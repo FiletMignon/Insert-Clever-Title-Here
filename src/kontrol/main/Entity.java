@@ -35,6 +35,7 @@ public abstract class Entity {
 		vel = new Velocity();
 		acc = new Acceleration();
 		force = new Force();
+		mass = 100;
 	}
 	/**
 	 * Get the current Position of this entity
@@ -188,5 +189,10 @@ public abstract class Entity {
 			}
 		}
 		return false;
+	}
+	public void setForce(Position position) {
+		force.setForceTo(this.getPosition(), position, 100f);
+		acc.setAccelerationFromForce(force, mass);
+		vel.accelerate(acc);
 	}
 }
