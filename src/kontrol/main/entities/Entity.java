@@ -176,7 +176,7 @@ public abstract class Entity {
 		for(int i = 0; i < 3; i++){
 			if(xyzPos[i] > xyzThis[i] - whdThis[i]){
 				if(xyzPos[i] < xyzThis[i] + whdThis[i]){
-					System.out.println(xyzPos[0] + " - Point Collision Detected!");
+//					System.out.println(xyzPos[0] + " - Point Collision Detected!");
 					return true;
 				}
 			}

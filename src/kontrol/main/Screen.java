@@ -38,8 +38,8 @@ public class Screen {
 		this.height = height;
 		enviro = new Environment(100, 100, 100);
         init(title);
-        Cube cube1 = new Cube("", new Position(-8,0,-16));
-        Cube cube2 = new Cube("", new Position(8,0,-16));
+        Cube cube1 = new Cube("", new Position(4,0,-16));
+        Cube cube2 = new Cube("", new Position(-4,0,-16));
         
         enviro.addPlayer(0, new Player("Player", new Position(0,0,0), "Test Dummy"));
         enviro.addEntity(cube1);

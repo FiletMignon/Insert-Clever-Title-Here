@@ -14,14 +14,17 @@ public class Cube extends Entity{
 	public void setVelocity(float x, float y, float z){
 		vel = new Velocity(x, y, z);
 	}
+	private Position forcePos = pos.inverse();
 	public void act(Environment enviro){
+		setForce(forcePos);
 		int entityAmount = enviro.getEntityAmount();
 		for(int i = 0; i < entityAmount; i++){
 			Entity indexedEnt = enviro.getEntity(i);
-			if(!isCollidedWith(indexedEnt) && (vel.getXVelocity()!=0 && vel.getYVelocity()!=0 && vel.getZVelocity()!=0)){
+			if(!isCollidedWith(indexedEnt)){
 				applyVelocity();
 			}
 			else{
+				forcePos = new Position(0,0,0);
 				System.out.println("Collide");
 			}
 		}
