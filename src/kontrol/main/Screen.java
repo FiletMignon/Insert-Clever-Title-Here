@@ -1,5 +1,8 @@
 package kontrol.main;
 
+import java.nio.FloatBuffer;
+
+import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -134,5 +137,16 @@ public class Screen {
 
         // Really Nice Perspective Calculations
         GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST);
+        
+        GL11.glEnable(GL11.GL_FOG);
+
+        FloatBuffer fogColor = BufferUtils.createFloatBuffer(4);
+        fogColor.put(0.5f).put(0.25f).put(0.0f).put(1.0f).flip(); //Make the color for the fog
+        GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP); //Set the mode of the fog
+        GL11.glFog(GL11.GL_FOG_COLOR, fogColor); //Fog color being added to the fog
+        GL11.glFogf(GL11.GL_FOG_DENSITY, 0.05f); //Density fo the fog (Note: Only used during Exponential fog)
+        GL11.glHint(GL11.GL_FOG_HINT, GL11.GL_DONT_CARE); //The glHint for the fog 
+//        GL11.glFogf(GL11.GL_FOG_START, 10.0f);
+//        GL11.glFogf(GL11.GL_FOG_END, 35.0f);
     }
 }
