@@ -142,18 +142,18 @@ public abstract class Entity {
 	}
 	
 	public boolean isCollidedWith(Entity other){
-		float dx = this.getPosition().x() - other.getPosition().x();
-		float dy = this.getPosition().y() - other.getPosition().y();
-		float dz = this.getPosition().z() - other.getPosition().z();
+		float dx = (this.getPosition().x() - other.getPosition().x()) + (other.getBounds().getWidth()/2 - this.getBounds().getWidth()/2);
+		float dy = (this.getPosition().y() - other.getPosition().y()) + (other.getBounds().getHeight()/2 - this.getBounds().getHeight()/2);
+		float dz = (this.getPosition().z() - other.getPosition().z()) + (other.getBounds().getDepth()/2 - this.getBounds().getDepth()/2);
 
-		if (dx * dx + dy * dy + dz * dz <= this.boundingBox.getWidth() * this.boundingBox.getHeight() * this.boundingBox.getDepth())
+		if (dx * dx + dy * dy + dz * dz <= (this.boundingBox.getWidth()) * (this.boundingBox.getHeight()) * (this.boundingBox.getDepth()))
 		{
-		 System.out.println("collision");
+
 		 return true;
 		}
 		else 
 		{
-			System.out.println("no collision");
+
 			return false;
 		}
 	}
