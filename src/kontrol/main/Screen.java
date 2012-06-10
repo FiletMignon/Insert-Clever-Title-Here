@@ -2,6 +2,10 @@ package kontrol.main;
 
 import java.nio.FloatBuffer;
 
+import kontrol.main.entities.Cube;
+import kontrol.main.entities.Player;
+import kontrol.main.physics.Position;
+
 import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
@@ -36,7 +40,7 @@ public class Screen {
         Cube cube1 = new Cube("", new Position(-8,0,-16));
         Cube cube2 = new Cube("", new Position(8,0,-16));
         
-        enviro.addPlayer(0, new Player("Player", new Position(0,0,0), "Test Dummy"));
+        enviro.addPlayer(0, new Player("", new Position(0,0,0), "Test Dummy"));
         enviro.addEntity(cube1);
         enviro.addEntity(cube2);
 		running = true;

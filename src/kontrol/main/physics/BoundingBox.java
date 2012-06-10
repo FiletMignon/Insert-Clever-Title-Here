@@ -1,4 +1,5 @@
-package kontrol.main;
+package kontrol.main.physics;
+
 
 public class BoundingBox {
 	private float width, height, depth;

@@ -1,4 +1,5 @@
-package kontrol.main;
+package kontrol.main.physics;
+
 
 public class Acceleration {
 	private float xAcc;

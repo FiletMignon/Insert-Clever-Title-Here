@@ -1,4 +1,11 @@
-package kontrol.main;
+package kontrol.main.entities;
+
+import kontrol.main.Environment;
+import kontrol.main.physics.Acceleration;
+import kontrol.main.physics.BoundingBox;
+import kontrol.main.physics.Force;
+import kontrol.main.physics.Position;
+import kontrol.main.physics.Velocity;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;

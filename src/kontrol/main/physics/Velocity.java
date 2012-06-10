@@ -1,7 +1,8 @@
 /**
  * 
  */
-package kontrol.main;
+package kontrol.main.physics;
+
 
 /**
  * @author wiful
@@ -9,9 +10,9 @@ package kontrol.main;
  *
  */
 public class Velocity {
-	protected float xVel;
-	protected float yVel;
-	protected float zVel;
+	private float xVel;
+	private float yVel;
+	private float zVel;
 	
 	public Velocity() {
 		xVel = 0;
