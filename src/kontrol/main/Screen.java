@@ -33,8 +33,8 @@ public class Screen {
 		this.height = height;
 		enviro = new Environment(100, 100, 100);
         init(title);
-        Cube cube1 = new Cube("", new Position( 2, 0, -16));
-        Cube cube2 = new Cube("", new Position(-2, 0, -16));
+        Cube cube1 = new Cube("", new Position( 4, 0, -16));
+        Cube cube2 = new Cube("", new Position(-4, 0, -16));
 
         System.out.println(cube1.getPosition().x() + " || " + cube2.getPosition().x());
         System.out.println(cube1.getPosition().y() + " || " + cube2.getPosition().y());

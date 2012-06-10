@@ -139,34 +139,20 @@ public abstract class Entity {
 	 * @return Whether or not the entities are colliding
 	 */
 	public boolean isCollidedWith(Entity ent){
-		float[] xyzOther = {ent.getPosition().x(), ent.getPosition().y(), ent.getPosition().z()};
-		float[] whdOther = {ent.getBounds().getWidth(), ent.getBounds().getHeight(), ent.getBounds().getDepth()};
+		Position minVertexThis = getBounds().getMinVertex(getPosition());
+		Position maxVertexThis = getBounds().getMaxVertex(getPosition());
 		
-		if(isCollidedWith(new Position(xyzOther[0]+whdOther[0], xyzOther[1]+whdOther[1], xyzOther[2]+whdOther[2]))){
-			return true;
-		}
-		if(isCollidedWith(new Position(xyzOther[0]-whdOther[0], xyzOther[1]+whdOther[1], xyzOther[2]+whdOther[2]))){
-			return true;
-		}
-		if(isCollidedWith(new Position(xyzOther[0]+whdOther[0], xyzOther[1]-whdOther[1], xyzOther[2]+whdOther[2]))){
-			return true;
-		}
-		if(isCollidedWith(new Position(xyzOther[0]+whdOther[0], xyzOther[1]+whdOther[1], xyzOther[2]-whdOther[2]))){
-			return true;
-		}
-		if(isCollidedWith(new Position(xyzOther[0]-whdOther[0], xyzOther[1]-whdOther[1], xyzOther[2]+whdOther[2]))){
-			return true;
-		}
-		if(isCollidedWith(new Position(xyzOther[0]+whdOther[0], xyzOther[1]-whdOther[1], xyzOther[2]-whdOther[2]))){
-			return true;
-		}
-		if(isCollidedWith(new Position(xyzOther[0]-whdOther[0], xyzOther[1]+whdOther[1], xyzOther[2]-whdOther[2]))){
-			return true;
-		}
-		if(isCollidedWith(new Position(xyzOther[0]-whdOther[0], xyzOther[1]-whdOther[1], xyzOther[2]-whdOther[2]))){
-			return true;
-		}
-		return false;
+		Position minVertexOther = ent.getBounds().getMinVertex(ent.getPosition());
+		Position maxVertexOther = ent.getBounds().getMaxVertex(ent.getPosition());
+
+		//Check if BB1's max is greater than BB2's min and BB1's min is less than BB2's max
+		  
+		return(maxVertexThis.x() > minVertexOther.x() && 
+				minVertexThis.x() < maxVertexOther.x() &&
+			    maxVertexThis.y() > minVertexOther.y() &&
+			    minVertexThis.y() < maxVertexOther.y() &&
+			    maxVertexThis.z() > minVertexOther.z() &&
+			    minVertexThis.z() < maxVertexOther.z());
 	}
 	/**
 	 * This method will return whether or not this entity and
@@ -194,5 +180,10 @@ public abstract class Entity {
 		force.setForceTo(this.getPosition(), position, 100f);
 		acc.setAccelerationFromForce(force, mass);
 		vel.accelerate(acc);
+	}
+	public void applyVelocity(){
+		pos.x(vel.getXVelocity());
+		pos.y(vel.getYVelocity());
+		pos.z(vel.getZVelocity());
 	}
 }

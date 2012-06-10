@@ -16,4 +16,10 @@ public class BoundingBox {
 	public float getDepth(){
 		return depth;
 	}
+	public Position getMaxVertex(Position pos){
+		return new Position(pos.x()+(width/2+height/2+depth/2), pos.y()+(width/2+height/2+depth/2), pos.z()+(width/2+height/2+depth/2));
+	}
+	public Position getMinVertex(Position pos){
+		return new Position(pos.x()-(width/2+height/2+depth/2), pos.y()-(width/2+height/2+depth/2), pos.z()-(width/2+height/2+depth/2));
+	}
 }
