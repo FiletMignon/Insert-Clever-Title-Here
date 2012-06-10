@@ -137,7 +137,20 @@ public abstract class Entity {
 		//Do nothing...
 	}
 	
-	
+	public boolean isCollidedWith(Entity other){
+		float xDistance = (float)Math.abs(this.getPosition().x() - other.getPosition().x());
+		float yDistance = (float)Math.abs(this.getPosition().y() - other.getPosition().y());
+		float zDistance = (float)Math.abs(this.getPosition().z() - other.getPosition().z());
+		System.out.println(xDistance + " " + yDistance + " " + zDistance);
+		if(xDistance <= ((this.boundingBox.getWidth()/2) + (other.boundingBox.getWidth()/2)) && 
+				yDistance <= ((this.boundingBox.getHeight()/2) + (other.boundingBox.getHeight()/2)) &&
+				zDistance <= ((this.boundingBox.getDepth()/2) + (other.boundingBox.getDepth()/2)))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
 	/**
 	 * This method will return whether or not this entity and
 	 * another are colliding with each other
@@ -145,7 +158,7 @@ public abstract class Entity {
 	 * @param ent An entity to check against this entity
 	 * @return Whether or not the entities are colliding
 	 */
-	public boolean isCollidedWith(Entity ent){
+/*	public boolean isCollidedWith(Entity ent){
 		Position minVertexThis = getBounds().getMinVertex(getPosition());
 		Position maxVertexThis = getBounds().getMaxVertex(getPosition());
 		
@@ -160,7 +173,7 @@ public abstract class Entity {
 			    minVertexThis.y() < maxVertexOther.y() &&
 			    maxVertexThis.z() > minVertexOther.z() &&
 			    minVertexThis.z() < maxVertexOther.z());
-	}
+	}*/
 	/**
 	 * This method will return whether or not this entity and
 	 * a position are colliding with each other

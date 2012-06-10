@@ -11,12 +11,9 @@ public class Cube extends Entity{
 		super(texture, new BoundingBox(1,1,1), pos);
 		vel = new Velocity();
 	}
-	public void setVelocity(float x, float y, float z){
-		vel = new Velocity(x, y, z);
-	}
-	private Position forcePos = pos.inverse();
+
 	public void act(Environment enviro){
-		setForce(forcePos);
+		force.setForce(0f,0f,-16f);
 		int entityAmount = enviro.getEntityAmount();
 		for(int i = 0; i < entityAmount; i++){
 			Entity indexedEnt = enviro.getEntity(i);
@@ -24,8 +21,8 @@ public class Cube extends Entity{
 				applyVelocity();
 			}
 			else{
-				forcePos = new Position(0,0,0);
-				System.out.println("Collide");
+				this.vel.setVelocity(0, 0, 0);
+			//	System.out.println("Collide");
 			}
 		}
 	}
