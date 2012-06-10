@@ -142,41 +142,20 @@ public abstract class Entity {
 	}
 	
 	public boolean isCollidedWith(Entity other){
-//		float xDistance = (float)Math.abs(this.getPosition().x() - other.getPosition().x());
-//		float yDistance = (float)Math.abs(this.getPosition().y() - other.getPosition().y());
-//		float zDistance = (float)Math.abs(this.getPosition().z() - other.getPosition().z());
-//		System.out.println(pos.distanceTo(other.getPosition()));
-//		if(xDistance <= ((this.boundingBox.getWidth()/2) + (other.boundingBox.getWidth()/2)) && 
-//				yDistance <= ((this.boundingBox.getHeight()/2) + (other.boundingBox.getHeight()/2)) &&
-//				zDistance <= ((this.boundingBox.getDepth()/2) + (other.boundingBox.getDepth()/2)))
-//		{
-//			return true;
-//		}
-//		else
-//			return false;
+		float dx = this.getPosition().x() - other.getPosition().x();
+		float dy = this.getPosition().y() - other.getPosition().y();
+		float dz = this.getPosition().z() - other.getPosition().z();
 
-//		System.out.println(pos.distanceTo(other.getPosition()));
-//	    if ( Math.abs(getPosition().x() - other.getPosition().x()) > (getBounds().getWidth() + other.getBounds().getWidth() )) return false;
-//	    if ( Math.abs(getPosition().y() - other.getPosition().y()) > (getBounds().getHeight() + other.getBounds().getHeight() )) return false;
-//	    if ( Math.abs(getPosition().z() - other.getPosition().z()) > (getBounds().getDepth() + other.getBounds().getDepth() )) return false;
-//		System.out.println("Collided!");
-//	    return true;
-
-		Position minVertexThis = getBounds().getMinVertex(getPosition());
-		Position maxVertexThis = getBounds().getMaxVertex(getPosition());
-		
-		Position minVertexOther = other.getBounds().getMinVertex(other.getPosition());
-		Position maxVertexOther = other.getBounds().getMaxVertex(other.getPosition());
-
-		//Check if BB1's max is greater than BB2's min and BB1's min is less than BB2's max
-
-		System.out.println(pos.distanceTo(other.getPosition()));
-		return(maxVertexThis.x() > minVertexOther.x() && 
-				minVertexThis.x() < maxVertexOther.x() &&
-			    maxVertexThis.y() > minVertexOther.y() &&
-			    minVertexThis.y() < maxVertexOther.y() &&
-			    maxVertexThis.z() > minVertexOther.z() &&
-			    minVertexThis.z() < maxVertexOther.z());
+		if (dx * dx + dy * dy + dz * dz <= this.boundingBox.getWidth() * this.boundingBox.getHeight() * this.boundingBox.getDepth())
+		{
+		 System.out.println("collision");
+		 return true;
+		}
+		else 
+		{
+			System.out.println("no collision");
+			return false;
+		}
 	}
 	/**
 	 * This method will return whether or not this entity and
@@ -194,21 +173,21 @@ public abstract class Entity {
 	 * @param pos the position to check
 	 * @return Whether or not the entities are colliding
 	 */
-	public boolean isCollidedWith(Position pos){
-		float[] xyzPos = {pos.x(), pos.y(), pos.z()};
-		float[] xyzThis = {getPosition().x(), getPosition().y(), getPosition().z()};
-		float[] whdThis = {getBounds().getWidth(), getBounds().getHeight(), getBounds().getDepth()};
-
-		for(int i = 0; i < 3; i++){
-			if(xyzPos[i] > xyzThis[i] - whdThis[i]){
-				if(xyzPos[i] < xyzThis[i] + whdThis[i]){
-//					System.out.println(xyzPos[0] + " - Point Collision Detected!");
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+//	public boolean isCollidedWith(Position pos){
+//		float[] xyzPos = {pos.x(), pos.y(), pos.z()};
+//		float[] xyzThis = {getPosition().x(), getPosition().y(), getPosition().z()};
+//		float[] whdThis = {getBounds().getWidth(), getBounds().getHeight(), getBounds().getDepth()};
+//
+//		for(int i = 0; i < 3; i++){
+//			if(xyzPos[i] > xyzThis[i] - whdThis[i]){
+//				if(xyzPos[i] < xyzThis[i] + whdThis[i]){
+////					System.out.println(xyzPos[0] + " - Point Collision Detected!");
+//					return true;
+//				}
+//			}
+//		}
+//		return false;
+//	}
 	public void setForce(Position position) {
 		force.setForceTo(getPosition(), position, 9.8f);
 		acc.setAccelerationFromForce(force, mass);

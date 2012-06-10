@@ -18,21 +18,21 @@ public class Environment {
 		entities = new ArrayList<Entity>(0);
 		players = new Player[1];
 	}
-	public boolean isOutOfBounds(Entity ent){
-		float x = ent.getPosition().x();
-		float y = ent.getPosition().y();
-		float z = ent.getPosition().z();
-		if(ent.isCollidedWith(new Position(x+width/2, y, z))){
-			return true;
-		}
-		if(ent.isCollidedWith(new Position(x, y+height/2, z))){
-			return true;
-		}
-		if(ent.isCollidedWith(new Position(x, y, z+depth/2))){
-			return true;
-		}
-		return false;
-	}
+//	public boolean isOutOfBounds(Entity ent){
+//		float x = ent.getPosition().x();
+//		float y = ent.getPosition().y();
+//		float z = ent.getPosition().z();
+//		if(ent.isCollidedWith(new Position(x+width/2, y, z))){
+//			return true;
+//		}
+//		if(ent.isCollidedWith(new Position(x, y+height/2, z))){
+//			return true;
+//		}
+//		if(ent.isCollidedWith(new Position(x, y, z+depth/2))){
+//			return true;
+//		}
+//		return false;
+//	}
 	public void addEntity(Entity ent){
 		entities.add(ent);
 	}
