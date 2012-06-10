@@ -34,6 +34,7 @@ public abstract class Entity {
 		this.pos = pos;
 		vel = new Velocity();
 		acc = new Acceleration();
+		this.pos = pos;
 	}
 	/**
 	 * Get the current Position of this entity
