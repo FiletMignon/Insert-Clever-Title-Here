@@ -11,7 +11,7 @@ public class Cube extends Entity{
 		super(texture, boundingBox, pos);
 		vel = new Velocity();
 	}
-
+ 
 	public void act(Environment enviro){
 //		int entityAmount = enviro.getEntityAmount();
 //		for(int i = 0; i < entityAmount; i++){
