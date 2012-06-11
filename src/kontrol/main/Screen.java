@@ -82,7 +82,9 @@ public class Screen {
 	private void initRenderLoop() {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);          // Clear The Screen And The Depth Buffer
 		GL11.glLoadIdentity();                          // Reset The Current Modelview Matrix
-		
+
+//		GL11.glEnable(GL11.GL_BLEND);
+//		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 	}
 	/**
 	 * Handle generic input that should not be object
@@ -148,6 +150,7 @@ public class Screen {
         GL11.glFog(GL11.GL_FOG_COLOR, fogColor); //Fog color being added to the fog
 //        GL11.glFogf(GL11.GL_FOG_DENSITY, 0.03f); //Density fo the fog (Note: Only used during Exponential fog)
         GL11.glHint(GL11.GL_FOG_HINT, GL11.GL_DONT_CARE); //The glHint for the fog 
+        GL11.glFogf(GL11.GL_FOG_START, 25.0f);
         GL11.glFogf(GL11.GL_FOG_END, 75.0f);
     }
 }
