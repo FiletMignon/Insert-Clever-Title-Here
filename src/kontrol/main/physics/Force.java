@@ -39,7 +39,7 @@ public class Force {
 		xFor = magnitude * (float)Math.cos(xy);
 		yFor = magnitude * (float)Math.sin(xy);
 		zFor = magnitude * (float)Math.cos(yz);
-		System.out.println("X:"+ xFor +" Y:"+ yFor+" Z:"+ zFor);
+//		System.out.println("X:"+ xFor +" Y:"+ yFor+" Z:"+ zFor);
 	}
 	public float getXForce(){
 		return xFor;

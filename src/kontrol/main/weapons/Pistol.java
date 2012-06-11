@@ -1,8 +1,13 @@
 package kontrol.main.weapons;
 
+import org.lwjgl.opengl.Display;
+
 import kontrol.main.Environment;
 import kontrol.main.entities.Bullet;
+import kontrol.main.entities.Cube;
+import kontrol.main.entities.Entity;
 import kontrol.main.entities.Player;
+import kontrol.main.physics.BoundingBox;
 import kontrol.main.util.Position;
 
 public class Pistol extends Weapon{
@@ -14,8 +19,13 @@ public class Pistol extends Weapon{
 	public void fire(Player player, Environment enviro){
 		if(canShoot){
 			canShoot = false;
-			shoot(player.getPosition(), enviro);
-			System.out.println("Pistol Fired!");
+			Position posToShootFrom = player.getNewPosition();
+			Position posToShootTo = player.getPosition().screenToWorld(Display.getWidth()/2, Display.getHeight()/2);
+			posToShootFrom.setXRot(player.getPosition().xRot());
+			posToShootFrom.setYRot(player.getPosition().yRot());
+			//TODO Make sure the gun shoots forward
+			shoot(new Bullet(posToShootFrom.inverse(), posToShootTo), enviro);
+			System.out.println(this.getClass().getSimpleName() + " Fired!");
 		}
 		if(!canShoot){
 			framesSinceLastShot++;
@@ -25,11 +35,24 @@ public class Pistol extends Weapon{
 			framesSinceLastShot = 0;
 		}
 	}
-	private void shoot(Position shootFromPos, Environment enviro) {
-		shootFromPos.forward(0.5f);
-		enviro.addEntity(new Bullet(shootFromPos));
+	private void shoot(Entity ent,  Environment enviro) {
+		enviro.addEntity(ent);	
 	}
+	private int framesSinceLastAltShot = 0;
 	public void altFire(Player player, Environment enviro){
-		shoot(player.getPosition(), enviro);
+		if(canShoot){
+			canShoot = false;
+			Position posToCreateCube = player.getPosition().screenToWorld(Display.getWidth()/2, Display.getHeight()/2);
+			BoundingBox bounds = new BoundingBox(1,1,1);
+			shoot(new Cube("", bounds, posToCreateCube), enviro);
+			System.out.println(this.getClass().getSimpleName() + " Made A Cube");
+		}
+		if(!canShoot){
+			framesSinceLastAltShot++;
+		}
+		if(framesSinceLastAltShot > 10){
+			canShoot = true;
+			framesSinceLastAltShot = 0;
+		}
 	}
 }

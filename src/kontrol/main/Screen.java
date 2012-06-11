@@ -4,6 +4,7 @@ import java.nio.FloatBuffer;
 
 import kontrol.main.entities.Cube;
 import kontrol.main.entities.Player;
+import kontrol.main.physics.BoundingBox;
 import kontrol.main.util.Position;
 
 
@@ -36,18 +37,18 @@ public class Screen {
 	public Screen(int width, int height, String title){
 		this.width = width;
 		this.height = height;
-		enviro = new Environment(100, 100, 100);
+		enviro = new Environment(25, 25, 25);
         init(title);
-        Cube cube1 = new Cube("", new Position(4,0,-16));
-        Cube cube2 = new Cube("", new Position(-4,0,-16));
+        Cube walls = new Cube("walls.png", new BoundingBox(50,50,50), new Position(0,0,0));
 
-        cube1.setForce(cube2.getPosition());
-        cube2.setForce(cube1.getPosition());
+        for(int x = 0; x < 10; x++){
+            for(int y = 0; y < 10; y++){
+            	enviro.addEntity(new Cube("", new BoundingBox(1, 1, 1), new Position(x,y,-16)));
+            }
+        }
         
-        enviro.addPlayer(0, new Player("Player", new Position(0,0,0), "Test Dummy"));
-        
-        enviro.addEntity(cube1);
-        enviro.addEntity(cube2);
+        enviro.addPlayer(0, new Player("Player", new Position(0,0,1), "Test Dummy"));
+        enviro.addEntity(walls);
         
 		running = true;
         while(running){
@@ -82,8 +83,6 @@ public class Screen {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);          // Clear The Screen And The Depth Buffer
 		GL11.glLoadIdentity();                          // Reset The Current Modelview Matrix
 		
-		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 	}
 	/**
 	 * Handle generic input that should not be object
@@ -144,12 +143,11 @@ public class Screen {
         GL11.glEnable(GL11.GL_FOG);
 
         FloatBuffer fogColor = BufferUtils.createFloatBuffer(4);
-        fogColor.put(0.5f).put(0.25f).put(0.0f).put(1.0f).flip(); //Make the color for the fog
-        GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP); //Set the mode of the fog
+        fogColor.put(0.75f).put(0.75f).put(0.75f).put(1.0f).flip(); //Make the color for the fog
+        GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_LINEAR); //Set the mode of the fog
         GL11.glFog(GL11.GL_FOG_COLOR, fogColor); //Fog color being added to the fog
-        GL11.glFogf(GL11.GL_FOG_DENSITY, 0.05f); //Density fo the fog (Note: Only used during Exponential fog)
+//        GL11.glFogf(GL11.GL_FOG_DENSITY, 0.03f); //Density fo the fog (Note: Only used during Exponential fog)
         GL11.glHint(GL11.GL_FOG_HINT, GL11.GL_DONT_CARE); //The glHint for the fog 
-//        GL11.glFogf(GL11.GL_FOG_START, 10.0f);
-//        GL11.glFogf(GL11.GL_FOG_END, 35.0f);
+        GL11.glFogf(GL11.GL_FOG_END, 75.0f);
     }
 }

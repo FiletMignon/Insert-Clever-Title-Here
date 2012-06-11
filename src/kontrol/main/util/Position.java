@@ -1,5 +1,12 @@
 package kontrol.main.util;
 
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+
+import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.GLU;
+
 public class Position {
 	private float x,y,z;
 	private float xRot, yRot, zRot;
@@ -27,6 +34,15 @@ public class Position {
 	}
 	public void setZ(float coord){
 		z = coord;
+	}
+	public void setXRot(float coord){
+		xRot = coord;
+	}
+	public void setYRot(float coord){
+		yRot = coord;
+	}
+	public void setZRot(float coord){
+		zRot = coord;
 	}
 	/**
 	 * Get the x coordinate
@@ -77,7 +93,9 @@ public class Position {
 	 * @return The new x rotation
 	 */
 	public void addXRot(float xRot){
-		this.xRot += xRot;
+		if(this.xRot + xRot < 90 && this.xRot + xRot > -90){
+			this.xRot += xRot;
+		}
 	}
 	/**
 	 * @param yRot the Rotation to add to the current xRot
@@ -96,12 +114,12 @@ public class Position {
 
 	public void forward(float distance){
 		x -= distance * (float)Math.sin(Math.toRadians(yRot));
-		//camPos[1] += distance * (float)Math.tan(Math.toRadians(pitch));
+//		y += distance * (float)Math.sin(Math.toRadians(xRot));
 		z += distance * (float)Math.cos(Math.toRadians(yRot));
 	}
 	public void backward(float distance){
 		x += distance * (float)Math.sin(Math.toRadians(yRot));
-		//camPos[1] -= distance * (float)Math.tan(Math.toRadians(pitch));
+//		y -= distance * (float)Math.sin(Math.toRadians(xRot));
 		z -= distance * (float)Math.cos(Math.toRadians(yRot));
 	}
 	public void strafeL(float distance){
@@ -119,7 +137,31 @@ public class Position {
 		y += distance;
 	}
 	public Position inverse() {
-		return new Position(-x(), -y(), -z());
+		return new Position(-x, -y, -z, xRot, yRot, zRot);
+	}
+	public Position screenToWorld(int x, int y){
+		int[] v = new int[16];
+        IntBuffer viewport = BufferUtils.createIntBuffer(16).put(v);  
+        viewport.flip();
+        float[] m = new float[16];
+        FloatBuffer modelview = BufferUtils.createFloatBuffer(16).put(m);
+        modelview.flip();
+        float[] p = new float[16];
+        FloatBuffer projection = BufferUtils.createFloatBuffer(16).put(p);
+        projection.flip();
+        float winX, winY;
+        float[] z = new float[1];
+        FloatBuffer winZ = BufferUtils.createFloatBuffer(1).put(z);
+        winZ.flip();
+        FloatBuffer pos = BufferUtils.createFloatBuffer(3);
+        GL11.glGetFloat( GL11.GL_MODELVIEW_MATRIX, modelview);
+        GL11.glGetFloat( GL11.GL_PROJECTION_MATRIX, projection);
+        GL11.glGetInteger( GL11.GL_VIEWPORT, viewport);
+        winX = (float)x;
+        winY = (float)viewport.get(3) - (float)y;
+        GL11.glReadPixels( x, (int)winY, 1, 1, GL11.GL_DEPTH_COMPONENT,  GL11.GL_FLOAT, winZ);
+        GLU.gluUnProject( winX, winY, winZ.get(0), modelview, projection, viewport, pos);
+        return new Position(pos.get(0),pos.get(1),pos.get(2));
 	}
 	public float distanceTo(Position pos){
 		double sqX = Math.pow(pos.x()-x(), 2);

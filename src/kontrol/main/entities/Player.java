@@ -49,8 +49,8 @@ public class Player extends Entity {
 	 * move accordingly
 	 */
 	public void input(){
-    	getPosition().addXRot(-Mouse.getDY()*speed);
-    	getPosition().addYRot(Mouse.getDX()*speed);
+    	pos.addXRot(-Mouse.getDY()*speed);
+    	pos.addYRot(Mouse.getDX()*speed);
 		Mouse.setGrabbed(true);
         if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
         	speed = 0.25f;
@@ -59,22 +59,22 @@ public class Player extends Entity {
         	speed = 0.05f;
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_W)){
-        	getPosition().forward(speed);
+        	pos.forward(speed);
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_S)){
-        	getPosition().backward(speed);
+        	pos.backward(speed);
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_A)){ 
-        	getPosition().strafeL(speed);
+        	pos.strafeL(speed);
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_D)){ 
-        	getPosition().strafeR(speed);
+        	pos.strafeR(speed);
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_Z)){  
-        	getPosition().down(speed);
+        	pos.down(speed);
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_Q)){  
-        	getPosition().up(speed);
+        	pos.up(speed);
         }
 }
 

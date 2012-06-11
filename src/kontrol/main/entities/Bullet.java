@@ -8,13 +8,14 @@ import kontrol.main.util.Position;
 
 public class Bullet extends Entity{
 	
-	public Bullet(Position shotFrom){
-		super(null, new BoundingBox(0.1f, 0.1f, 0.1f), shotFrom);
-		Position temp = new Position(0, 10, 0);
-		this.setForce(temp.inverse());
-		System.out.print(name + " is at X:" + pos.x());
-		System.out.print("  Y:" + pos.y());
-		System.out.println("  Z:" + pos.z());
+	private Position shootTo;
+	private Position shootFrom;
+	
+	public Bullet(Position shootFrom, Position shootTo){
+		super(null, new BoundingBox(0.1f, 0.1f, 0.1f), shootFrom);
+		this.shootFrom = shootFrom;
+		this.shootTo = shootTo.inverse();
+		setForce(this.shootTo);
 	}
 	public void render(){
 		float width = boundingBox.getWidth()/2;
@@ -65,8 +66,8 @@ public class Bullet extends Entity{
 			if(!(indexedEnt instanceof Bullet) && this != indexedEnt){
 				if(isCollidedWith(indexedEnt)){
 					System.out.println(name + " has collided with " + indexedEnt.name);
-					vel.setVelocity(0, 0, 0);
-					force.setForce(0, 0, 0);
+					removeSelfFromEnviroment(enviro);
+					return;
 				}
 			}
 		}

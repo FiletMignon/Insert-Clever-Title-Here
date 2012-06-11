@@ -47,6 +47,7 @@ public abstract class Entity {
 		force = new Force();
 		mass = 100;
 		name = this.getClass().getSimpleName() + "#" + totalEntities;
+		totalEntities++;
 	}
 	/**
 	 * Get the current Position of this entity
@@ -54,6 +55,13 @@ public abstract class Entity {
 	 */
 	public Position getPosition(){
 		return pos;
+	}
+	/**
+	 * Get a new Position object of this entity's position
+	 * @return The new position
+	 */
+	public Position getNewPosition(){
+		return new Position(pos.x(), pos.y(), pos.z(), pos.xRot(), pos.yRot(), pos.zRot());
 	}
 	/**
 	 * Get the BoundingBox object of this entity
@@ -204,9 +212,10 @@ public abstract class Entity {
 	}
 	public void removeSelfFromEnviroment(Environment enviro){
 		int entityAmount = enviro.getEntityAmount();
-		for(int i = 0; i > entityAmount; i++){
+		for(int i = 0; i < entityAmount; i++){
 			if(enviro.getEntity(i) == this){
 				enviro.removeEntity(i);
+				return;
 			}
 		}
 	}
