@@ -141,18 +141,26 @@ public abstract class Entity {
 		//Do everything
 	}
 	
-	public boolean isCollidedWith(Entity other){
-		float dx = (this.getPosition().x() - other.getPosition().x()) + (other.getBounds().getWidth()/2 - this.getBounds().getWidth()/2);
-		float dy = (this.getPosition().y() - other.getPosition().y()) + (other.getBounds().getHeight()/2 - this.getBounds().getHeight()/2);
-		float dz = (this.getPosition().z() - other.getPosition().z()) + (other.getBounds().getDepth()/2 - this.getBounds().getDepth()/2);
+	 public boolean isCollidedWith(Entity other){
+		  float dx = (this.getPosition().x() - other.getPosition().x());
+		  float dy = (this.getPosition().y() - other.getPosition().y());
+		  float dz = (this.getPosition().z() - other.getPosition().z());
 
-		if (dx * dx + dy * dy + dz * dz <= (this.boundingBox.getWidth()/2) * (this.boundingBox.getHeight()/2) * (this.boundingBox.getDepth()/2)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
+		  if (dx * dx + dy * dy + dz * dz <=  Math.pow((this.boundingBox.getWidth()/2 + other.boundingBox.getWidth()/2)
+		    * (this.boundingBox.getHeight()/2 + other.boundingBox.getHeight()/2) 
+		    * (this.boundingBox.getDepth()/2 + other.boundingBox.getDepth()/2), 1/3.))
+		  {
+
+		   return true;
+		  }
+		  if (dx * dx + dy * dy + dz * dz <= (this.boundingBox.getWidth()/2) * (this.boundingBox.getHeight()/2) * (this.boundingBox.getDepth()/2)) {
+		   return true;
+
+		  }
+		  else {
+		   return false;
+		  }
+		 }
 	/**
 	 * This method will return whether or not this entity and
 	 * another are colliding with each other
