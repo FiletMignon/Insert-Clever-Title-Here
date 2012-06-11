@@ -11,11 +11,12 @@ public class Bullet extends Entity{
 	private Position shootTo;
 	private Position shootFrom;
 	
+	private Position force;
 	public Bullet(Position shootFrom, Position shootTo){
-		super(null, new BoundingBox(0.1f, 0.1f, 0.1f), shootFrom);
-		this.shootFrom = shootFrom.inverse();
+		super(null, new BoundingBox(0.05f, 0.05f, 0.05f), shootFrom);
+		this.shootFrom = shootFrom;
 		this.shootTo = shootTo;
-		Position force = new Position(shootTo.x() - shootFrom.x(), shootTo.y() - shootFrom.y(), shootTo.z() - shootFrom.z());
+		force = shootTo;
 		setForce(force);
 	}
 	public void render(){
@@ -23,7 +24,7 @@ public class Bullet extends Entity{
 		float height = boundingBox.getHeight()/2;
 		float depth = boundingBox.getDepth()/2;
 		GL11.glTranslatef(pos.x(), pos.y(), pos.z());
-		GL11.glColor3f(0.0f, 0.5f, 1.0f);
+		GL11.glColor3f(0.0f, 0.0f, 0.0f);
 	    GL11.glBegin(GL11.GL_QUADS);                        // Draw A Quad
 		    
 		    GL11.glVertex3f( width, height,-depth);         // Top Right Of The Quad (Top)
@@ -61,6 +62,7 @@ public class Bullet extends Entity{
 	}
 	public void act(Environment enviro){
 		applyVelocity();
+//		setForce(force);
 		int entityAmount = enviro.getEntityAmount();
 		for(int i = 0; i < entityAmount; i++){
 			Entity indexedEnt = enviro.getEntity(i);

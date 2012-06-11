@@ -49,7 +49,6 @@ public class Player extends Entity {
 	 * move accordingly
 	 */
 	private boolean useMouse = true;
-	private boolean mouseToggle = false;
 	public void input(){
     	if(useMouse){
         	pos.addXRot(-Mouse.getDY()*mouseSensivity);

@@ -2,14 +2,11 @@ package kontrol.main.entities;
 
 import kontrol.main.Environment;
 import kontrol.main.physics.BoundingBox;
-import kontrol.main.physics.Velocity;
 import kontrol.main.util.Position;
 
-
-public class Cube extends Entity{
-	public Cube(String texture, BoundingBox boundingBox, Position pos) {
+public class SpawnedCube extends Cube {
+	public SpawnedCube(String texture, BoundingBox boundingBox, Position pos) {
 		super(texture, boundingBox, pos);
-		vel = new Velocity();
 	}
 
 	public void act(Environment enviro){
@@ -28,8 +25,9 @@ public class Cube extends Entity{
 //					}else if(dz > dx && dz > dy){
 //						this.getPosition().setZ(this.getPosition().z() + (this.boundingBox.getDepth()/2 + indexedEnt.boundingBox.getDepth()/2 - dz)/2);
 //					}
-//				System.out.println(name + " has collided with " + indexedEnt.name);
-//			}
+//				}else{
+//					System.out.println(name + " has collided with " + indexedEnt.name);
+//				}
 //			}else{
 //			}
 //		}

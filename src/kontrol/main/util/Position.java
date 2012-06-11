@@ -139,7 +139,7 @@ public class Position {
 	public Position inverse() {
 		return new Position(-x, -y, -z, xRot, yRot, zRot);
 	}
-	public Position screenToWorld(int x, int y){
+	public static Position screenToWorld(int x, int y){
 		int[] v = new int[16];
         IntBuffer viewport = BufferUtils.createIntBuffer(16).put(v);  
         viewport.flip();
