@@ -118,7 +118,7 @@ public class Player extends Entity {
         if(Mouse.isButtonDown(0)){
     		fire(enviro);
         }
-        if(Mouse.isButtonDown(1)){
+        else if(Mouse.isButtonDown(1)){
     		altFire(enviro);
         }
 	}

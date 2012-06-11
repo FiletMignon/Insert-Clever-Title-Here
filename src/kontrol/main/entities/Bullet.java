@@ -13,9 +13,10 @@ public class Bullet extends Entity{
 	
 	public Bullet(Position shootFrom, Position shootTo){
 		super(null, new BoundingBox(0.1f, 0.1f, 0.1f), shootFrom);
-		this.shootFrom = shootFrom;
-		this.shootTo = shootTo.inverse();
-		setForce(this.shootTo);
+		this.shootFrom = shootFrom.inverse();
+		this.shootTo = shootTo;
+		Position force = new Position(shootTo.x() - shootFrom.x(), shootTo.y() - shootFrom.y(), shootTo.z() - shootFrom.z());
+		setForce(force);
 	}
 	public void render(){
 		float width = boundingBox.getWidth()/2;

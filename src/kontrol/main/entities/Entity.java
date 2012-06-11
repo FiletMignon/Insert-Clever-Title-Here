@@ -22,7 +22,7 @@ public abstract class Entity {
 	protected float mass;
 	protected String name;
 	
-	protected static int totalEntities = 1;
+	protected static long totalEntities = 1;
 	
 	/**
 	 * 
@@ -46,7 +46,7 @@ public abstract class Entity {
 		acc = new Acceleration();
 		force = new Force();
 		mass = 100;
-		name = this.getClass().getSimpleName() + "#" + totalEntities;
+		name = this.getClass().getSimpleName() + ":" + totalEntities;
 		totalEntities++;
 	}
 	/**

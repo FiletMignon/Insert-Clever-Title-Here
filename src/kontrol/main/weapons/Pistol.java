@@ -20,11 +20,13 @@ public class Pistol extends Weapon{
 		if(canShoot){
 			canShoot = false;
 			Position posToShootFrom = player.getNewPosition();
+//			posToShootFrom.forward(1.5f);
+			posToShootFrom = posToShootFrom.inverse();
 			Position posToShootTo = player.getPosition().screenToWorld(Display.getWidth()/2, Display.getHeight()/2);
 			posToShootFrom.setXRot(player.getPosition().xRot());
 			posToShootFrom.setYRot(player.getPosition().yRot());
 			//TODO Make sure the gun shoots forward
-			shoot(new Bullet(posToShootFrom.inverse(), posToShootTo), enviro);
+			shoot(new Bullet(posToShootFrom, posToShootTo), enviro);
 			System.out.println(this.getClass().getSimpleName() + " Fired!");
 		}
 		if(!canShoot){
