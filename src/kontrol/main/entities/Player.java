@@ -1,6 +1,7 @@
 package kontrol.main.entities;
 
 
+import kontrol.main.Environment;
 import kontrol.main.physics.BoundingBox;
 import kontrol.main.util.Position;
 import kontrol.main.weapons.*;
@@ -39,6 +40,7 @@ public class Player extends Entity {
 		//Render Nothing
 	}
 	public void act(){
+		
 		input();
 	}
 	private float speed = 0.05f;//The speed of the player
@@ -74,27 +76,20 @@ public class Player extends Entity {
         if(Keyboard.isKeyDown(Keyboard.KEY_Q)){  
         	getPosition().up(speed);
         }
-        if(Mouse.isButtonDown(0)){
-    		fire();
-        }
-        if(Mouse.isButtonDown(1)){
-    		altFire();
-        }
-
-	}
+}
 
 	/**
 	 * Fire the current weapon.
 	 */
-	private void fire() {
-		weapons[currentWeaponType].getWeapon(currentWeaponIndex).fire();
+	private void fire(Environment enviro) {
+		weapons[currentWeaponType].getWeapon(currentWeaponIndex).fire(this, enviro);
 	}
 	/**
 	 * Fire the alternate fire of the current
 	 * weapon.
 	 */
-	private void altFire() {
-		weapons[currentWeaponType].getWeapon(currentWeaponIndex).altFire();
+	private void altFire(Environment enviro) {
+		weapons[currentWeaponType].getWeapon(currentWeaponIndex).altFire(this, enviro);
 	}
 
 	/**
@@ -110,5 +105,14 @@ public class Player extends Entity {
         GL11.glRotatef(getPosition().zRot(), 0.0f, 0.0f, 1.0f);
         //translate to the position vector's location
         GL11.glTranslatef(getPosition().x(), getPosition().y(), getPosition().z());
+	}
+
+	public void handleWeapons(Environment enviro) {
+        if(Mouse.isButtonDown(0)){
+    		fire(enviro);
+        }
+        if(Mouse.isButtonDown(1)){
+    		altFire(enviro);
+        }
 	}
 }

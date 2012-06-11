@@ -76,25 +76,22 @@ public class Position {
 	 * @param xRot the Rotation to add to the current xRot
 	 * @return The new x rotation
 	 */
-	public float addXRot(float xRot){
+	public void addXRot(float xRot){
 		this.xRot += xRot;
-		return xRot;
 	}
 	/**
 	 * @param yRot the Rotation to add to the current xRot
 	 * @return The new y rotation
 	 */
-	public float addYRot(float yRot){
+	public void addYRot(float yRot){
 		this.yRot += yRot;
-		return yRot;
 	}
 	/**
 	 * @param zRot the Rotation to add to the current xRot
 	 * @return The new z rotation
 	 */
-	public float addZRot(float zRot){
+	public void addZRot(float zRot){
 		this.zRot += zRot;
-		return zRot;
 	}
 
 	public void forward(float distance){

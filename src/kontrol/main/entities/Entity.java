@@ -46,7 +46,7 @@ public abstract class Entity {
 		acc = new Acceleration();
 		force = new Force();
 		mass = 100;
-		name = "Entity#" + totalEntities;
+		name = this.getClass().getSimpleName() + "#" + totalEntities;
 	}
 	/**
 	 * Get the current Position of this entity
@@ -146,14 +146,10 @@ public abstract class Entity {
 		float dy = (this.getPosition().y() - other.getPosition().y()) + (other.getBounds().getHeight()/2 - this.getBounds().getHeight()/2);
 		float dz = (this.getPosition().z() - other.getPosition().z()) + (other.getBounds().getDepth()/2 - this.getBounds().getDepth()/2);
 
-		if (dx * dx + dy * dy + dz * dz <= (this.boundingBox.getWidth()) * (this.boundingBox.getHeight()) * (this.boundingBox.getDepth()))
-		{
-
-		 return true;
+		if (dx * dx + dy * dy + dz * dz <= (this.boundingBox.getWidth()/2) * (this.boundingBox.getHeight()/2) * (this.boundingBox.getDepth()/2)) {
+			return true;
 		}
-		else 
-		{
-
+		else {
 			return false;
 		}
 	}
@@ -173,21 +169,21 @@ public abstract class Entity {
 	 * @param pos the position to check
 	 * @return Whether or not the entities are colliding
 	 */
-//	public boolean isCollidedWith(Position pos){
-//		float[] xyzPos = {pos.x(), pos.y(), pos.z()};
-//		float[] xyzThis = {getPosition().x(), getPosition().y(), getPosition().z()};
-//		float[] whdThis = {getBounds().getWidth(), getBounds().getHeight(), getBounds().getDepth()};
-//
-//		for(int i = 0; i < 3; i++){
-//			if(xyzPos[i] > xyzThis[i] - whdThis[i]){
-//				if(xyzPos[i] < xyzThis[i] + whdThis[i]){
-////					System.out.println(xyzPos[0] + " - Point Collision Detected!");
-//					return true;
-//				}
-//			}
-//		}
-//		return false;
-//	}
+	public boolean isCollidedWith(Position pos){
+		float[] xyzPos = {pos.x(), pos.y(), pos.z()};
+		float[] xyzThis = {getPosition().x(), getPosition().y(), getPosition().z()};
+		float[] whdThis = {getBounds().getWidth(), getBounds().getHeight(), getBounds().getDepth()};
+
+		for(int i = 0; i < 3; i++){
+			if(xyzPos[i] > xyzThis[i] - whdThis[i]){
+				if(xyzPos[i] < xyzThis[i] + whdThis[i]){
+//					System.out.println(xyzPos[0] + " - Point Collision Detected!");
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	public void setForce(Position position) {
 		force.setForceTo(getPosition(), position, 9.8f);
 		acc.setAccelerationFromForce(force, mass);
@@ -197,5 +193,13 @@ public abstract class Entity {
 		pos.setX(pos.x()+vel.getXVelocity());
 		pos.setY(pos.y()+vel.getYVelocity());
 		pos.setZ(pos.z()+vel.getZVelocity());
+	}
+	public void removeSelfFromEnviroment(Environment enviro){
+		int entityAmount = enviro.getEntityAmount();
+		for(int i = 0; i > entityAmount; i++){
+			if(enviro.getEntity(i) == this){
+				enviro.removeEntity(i);
+			}
+		}
 	}
 }

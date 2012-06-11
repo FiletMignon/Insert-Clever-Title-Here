@@ -38,12 +38,10 @@ public class Screen {
 		this.height = height;
 		enviro = new Environment(100, 100, 100);
         init(title);
-        Cube cube1 = new Cube("", new Position(4,0,-16));
-        Cube cube2 = new Cube("", new Position(-4,0,-16));
+        Cube cube = new Cube("", new Position(4,2,-16));
         
         enviro.addPlayer(0, new Player("Player", new Position(0,0,0), "Test Dummy"));
-        enviro.addEntity(cube1);
-        enviro.addEntity(cube2);
+        enviro.addEntity(cube);
 		running = true;
         while(running){
             if(Display.isCloseRequested())

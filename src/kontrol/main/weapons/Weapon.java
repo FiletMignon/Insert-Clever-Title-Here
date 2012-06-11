@@ -1,5 +1,8 @@
 package kontrol.main.weapons;
 
+import kontrol.main.Environment;
+import kontrol.main.entities.Player;
+
 public abstract class Weapon {
 	public static final int WEPTYPE_PISTOLS = 0;
 	public static final int WEPTYPE_SUPPORT_ENVIRONMENT = 1;
@@ -10,10 +13,10 @@ public abstract class Weapon {
 	
 	public Weapon(){
 	}
-	public void fire(){
+	public void fire(Player player, Environment enviro){
 	}
-	public void altFire(){
+	public void altFire(Player player, Environment enviro){
 	}
-	public void reload(){
+	public void reload(Player player, Environment enviro){
 	}
 }
