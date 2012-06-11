@@ -39,19 +39,26 @@ public class Player extends Entity {
 	public void render(){
 		//Render Nothing
 	}
-	public void act(){
-		
+	public void act(Environment enviro){
 		input();
 	}
 	private float speed = 0.05f;//The speed of the player
+	private float mouseSensivity = 0.05f;//The speed of the player
 	/**
 	 * Handle the input of the player and
 	 * move accordingly
 	 */
+	private boolean useMouse = true;
+	private boolean mouseToggle = false;
 	public void input(){
-    	pos.addXRot(-Mouse.getDY()*speed);
-    	pos.addYRot(Mouse.getDX()*speed);
-		Mouse.setGrabbed(true);
+    	if(useMouse){
+        	pos.addXRot(-Mouse.getDY()*mouseSensivity);
+        	pos.addYRot(Mouse.getDX()*mouseSensivity);
+    		Mouse.setGrabbed(true);
+    	}
+    	else{
+    		Mouse.setGrabbed(false);
+    	}
         if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
         	speed = 0.25f;
         }

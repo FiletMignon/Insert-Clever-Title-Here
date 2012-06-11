@@ -60,7 +60,7 @@ public class Environment {
 			entities.get(i).act(this);
 		}
 		for(int i = 0; i < players.length; i++){
-			players[i].act();
+			players[i].act(this);
 		}
 		handleAllTheWeapons();
 	}
