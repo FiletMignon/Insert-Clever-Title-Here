@@ -40,6 +40,7 @@ public class Player extends Entity {
 		//Render Nothing
 	}
 	public void act(Environment enviro){
+		applyPhysics(enviro);
 		input();
 	}
 	private float speed = 0.05f;//The speed of the player

@@ -149,26 +149,34 @@ public abstract class Entity {
 		//Do everything
 	}
 	
-	 public boolean isCollidedWith(Entity other){
-		  float dx = (this.getPosition().x() - other.getPosition().x());
-		  float dy = (this.getPosition().y() - other.getPosition().y());
-		  float dz = (this.getPosition().z() - other.getPosition().z());
+	public void applyPhysics(Environment enviro){
+		//TODO Make the gravity fuction only work when not collided
+		if(collidedWith(enviro) == null){
+			gravity();
+		}else{
+			vel.setVelocity(0, 0, 0);
+			force.setForce(0, 0, 0);
+			acc.setAcceleration(0, 0, 0);
+		}
+	}
+	public void gravity(){
+		//TODO Make the gravity function let you fall
+		System.out.println("Applied Gravity!");
+	}
+	
+	public Entity collidedWith(Environment enviro){
+		int entityAmount = enviro.getEntityAmount();
+		for(int i = 0; i < entityAmount; i++){
+			Entity indexedEnt = enviro.getEntity(i);
+			if(indexedEnt != this){
+				if(isCollidedWith(indexedEnt)){
+					return indexedEnt;
+				}
+			}
+		}
+		return null;
+	}
 
-		  if (dx * dx + dy * dy + dz * dz <=  Math.pow((this.boundingBox.getWidth()/2 + other.boundingBox.getWidth()/2)
-		    * (this.boundingBox.getHeight()/2 + other.boundingBox.getHeight()/2) 
-		    * (this.boundingBox.getDepth()/2 + other.boundingBox.getDepth()/2), 1/3.))
-		  {
-
-		   return true;
-		  }
-		  if (dx * dx + dy * dy + dz * dz <= (this.boundingBox.getWidth()/2) * (this.boundingBox.getHeight()/2) * (this.boundingBox.getDepth()/2)) {
-		   return true;
-
-		  }
-		  else {
-		   return false;
-		  }
-		 }
 	/**
 	 * This method will return whether or not this entity and
 	 * another are colliding with each other
@@ -176,8 +184,23 @@ public abstract class Entity {
 	 * @param ent An entity to check against this entity
 	 * @return Whether or not the entities are colliding
 	 */
-/*	public boolean isCollidedWith(Entity ent){
-	}*/
+	 public boolean isCollidedWith(Entity other){
+		  float dx = (this.getPosition().x() - other.getPosition().x());
+		  float dy = (this.getPosition().y() - other.getPosition().y());
+		  float dz = (this.getPosition().z() - other.getPosition().z());
+
+		  if (dx * dx + dy * dy + dz * dz <=  Math.pow((this.boundingBox.getWidth()/2 + other.boundingBox.getWidth()/2)
+		    * (this.boundingBox.getHeight()/2 + other.boundingBox.getHeight()/2) 
+		    * (this.boundingBox.getDepth()/2 + other.boundingBox.getDepth()/2), 1/3.)){
+			  return true;
+		  }
+		  if (dx * dx + dy * dy + dz * dz <= (this.boundingBox.getWidth()/2) * (this.boundingBox.getHeight()/2) * (this.boundingBox.getDepth()/2)) {
+			  return true;
+
+		  }else {
+			  return false;
+		  }
+	 }
 	/**
 	 * This method will return whether or not this entity and
 	 * a position are colliding with each other
