@@ -31,7 +31,7 @@ public class Player extends Entity {
 		currentWeaponType = 0;
 		currentWeaponIndex = 0;
 		weapons[Weapon.WEPTYPE_PISTOLS].addWeapon(new Pistol());
-		health = 123;
+		health = 100;
 	}
 
 	/**
@@ -44,10 +44,7 @@ public class Player extends Entity {
 	public void render(){
 		//Render Nothing
 	}
-	private SegmentDisplay testDisplay = new SegmentDisplay("", 50, 80, new Position(200,200,0));
-	private SegmentDisplay healthDisplay1 = new SegmentDisplay("", 25, 40, new Position(100,550,0));
-	private SegmentDisplay healthDisplay10 = new SegmentDisplay("", 25, 40, new Position(140,550,0));
-	private SegmentDisplay healthDisplay100 = new SegmentDisplay("", 25, 40, new Position(180,550,0));
+	
 	private int displayShow = 0;
 	private int frames = 0;
 	public void hud(){
@@ -60,12 +57,7 @@ public class Player extends Entity {
 				health--;
 				frames = 0;
 			}
-			int healthDigit;
-			healthDigit = health%10;
-			healthDigit /= 10;
-			healthDisplay1.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit]);
-			healthDisplay10.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit]);
-			healthDisplay100.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit]);
+			displayHealthHUD();
 			GL11.glTranslatef(Display.getWidth()/2, Display.getHeight()/2, 0);
 			GL11.glBegin(GL11.GL_LINE_LOOP);
 				GL11.glVertex3f( 0.0f, 8.0f, 0.0f);         // Top 
@@ -82,6 +74,22 @@ public class Player extends Entity {
 			GL11.glTranslatef(-Display.getWidth()/2, -Display.getHeight()/2, 0);
 		}
 	}
+	
+	private SegmentDisplay healthDisplay1s = new SegmentDisplay("", 25, 40, new Position(100,550,0));
+	private SegmentDisplay healthDisplay10s = new SegmentDisplay("", 25, 40, new Position(140,550,0));
+	private SegmentDisplay healthDisplay100s = new SegmentDisplay("", 25, 40, new Position(180,550,0));
+	private void displayHealthHUD() {
+		int healthDigit[] = new int[3];
+		int temp = health;
+		for(int i = 0; i < 3; i++){
+			healthDigit[i] = temp%10;
+			temp /= 10;
+		}
+		healthDisplay1s.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit[2]]);
+		healthDisplay10s.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit[1]]);
+		healthDisplay100s.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit[0]]);
+	}
+
 	public void act(Environment enviro){
 		applyPhysics(enviro);
 		input();

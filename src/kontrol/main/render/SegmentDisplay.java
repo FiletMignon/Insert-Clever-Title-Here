@@ -25,8 +25,8 @@ public class SegmentDisplay {
 	private float height;
 	private Position pos;
 	public SegmentDisplay(String texture, float width, float height, Position pos){
-		this.width = width;
-		this.height = height;
+		this.width = width+0.125f;
+		this.height = height+0.125f;
 		this.pos = pos;
 		try {
 			this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + texture));
