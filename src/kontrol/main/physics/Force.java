@@ -25,17 +25,17 @@ public class Force {
 		double xy = 0;
 		double xz = 0;
 		if(x != 0){
-			if(y/x < 0){
+			if(x < 0){
 				xy = (Math.atan(y/x));
 			}
 			else{
-				xy = -(Math.atan(y/x) + 90);
+				xy = -(Math.atan(y/x) - Math.PI/2);
 			}
-			if(z/x < 0){
+			if(x < 0){
 				xz = (Math.atan(z/x));
 			}
 			else{
-				xz = -(Math.atan(z/ x) + 90);
+				xz = -(Math.atan(z/ x) - Math.PI/2);
 			}
 		}
 		x = (Math.cos(xy) * magnitude);

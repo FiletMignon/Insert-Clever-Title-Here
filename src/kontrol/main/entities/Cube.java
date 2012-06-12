@@ -34,4 +34,10 @@ public class Cube extends Entity{
 //			}
 //		}
 	}
+
+	public void setForce(float i, float j, float k) {
+		force.setForce(i, j, k);
+		acc.setAccelerationFromForce(force, mass);
+		vel.accelerate(acc);		
+	}
 }

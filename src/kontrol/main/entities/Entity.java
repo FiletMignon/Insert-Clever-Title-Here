@@ -156,13 +156,16 @@ public abstract class Entity {
 					(float)(-force.getXForce()-acc.getXAcceleration()*mass-(vel.getXVelocity()/(.06))*mass),
 					(float)(-force.getYForce()-acc.getYAcceleration()*mass-(vel.getYVelocity()/(.06))*mass), 
 					(float)(-force.getXForce()-acc.getXAcceleration()*mass-(vel.getXVelocity()/(.06))*mass));
+			acc.setAccelerationFromForce(force, mass);
+			vel.accelerate(acc);
 			force.setForce(0, 0, 0);
 			acc.setAcceleration(0, 0, 0);
 			vel.setVelocity(0, 0, 0);
 		}
 		else{
-			if(gravity != null)
-				gravity(gravity);
+//			if(gravity != null)
+//				gravity(gravity);
+			
 		}
 	}
 	public void gravity(Position g){
@@ -237,7 +240,7 @@ public abstract class Entity {
 		return false;
 	}
 	public void setForce(Position position, float magnitude) {
-		force.setForceTo(getPosition(), position, magnitude);
+		force.setForceTo(this.getPosition(), position, magnitude);
 		acc.setAccelerationFromForce(force, mass);
 		vel.accelerate(acc);
 	}
