@@ -61,7 +61,8 @@ public class Player extends Entity {
 				frames = 0;
 			}
 			int healthDigit;
-			health
+			healthDigit = health%10;
+			healthDigit /= 10;
 			healthDisplay1.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit]);
 			healthDisplay10.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit]);
 			healthDisplay100.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit]);

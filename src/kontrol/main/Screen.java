@@ -41,11 +41,11 @@ public class Screen {
         init(title);
         Cube walls = new Cube("walls.png", new BoundingBox(50,50,50), new Position(0,0,0));
 
-        for(int x = 0; x < 10; x++){
-            for(int y = 0; y < 10; y++){
-            	enviro.addEntity(new Cube("", new BoundingBox(1, 1, 1), new Position(x-5,-8,y-5)));
-            }
-        }
+//        for(int x = 0; x < 10; x++){
+//            for(int y = 0; y < 10; y++){
+//            	enviro.addEntity(new Cube("", new BoundingBox(1, 1, 1), new Position(x-5,-8,y-5)));
+//            }
+//        }
         
         enviro.addPlayer(0, new Player("Player", new Position(0,0,1), "Test Dummy"));
         enviro.addEntity(walls);
