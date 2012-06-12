@@ -15,6 +15,7 @@ public class Bullet extends Entity{
 	public Bullet(Position shootFrom, Position shootTo){
 		super(null, new BoundingBox(0.05f, 0.05f, 0.05f), shootFrom);
 		this.shootFrom = shootFrom;
+		this.shootFrom.backward(1.0f);
 		this.shootTo = shootTo;
 		force = shootTo;
 		setForce(force);
@@ -24,7 +25,7 @@ public class Bullet extends Entity{
 		float height = boundingBox.getHeight()/2;
 		float depth = boundingBox.getDepth()/2;
 		GL11.glTranslatef(pos.x(), pos.y(), pos.z());
-		GL11.glColor3f(0.0f, 0.0f, 0.0f);
+		GL11.glColor3f(0.0f, 0.0f, 1.0f);
 	    GL11.glBegin(GL11.GL_QUADS);                        // Draw A Quad
 		    
 		    GL11.glVertex3f( width, height,-depth);         // Top Right Of The Quad (Top)

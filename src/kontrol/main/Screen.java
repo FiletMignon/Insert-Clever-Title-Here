@@ -39,7 +39,7 @@ public class Screen {
 		this.height = height;
 		enviro = new Environment(25, 25, 25);
         init(title);
-//        Cube walls = new Cube("walls.png", new BoundingBox(50,50,50), new Position(0,0,0));
+        Cube walls = new Cube("walls.png", new BoundingBox(50,50,50), new Position(0,0,0));
 
         for(int x = 0; x < 10; x++){
             for(int y = 0; y < 10; y++){
@@ -48,7 +48,7 @@ public class Screen {
         }
         
         enviro.addPlayer(0, new Player("Player", new Position(0,0,1), "Test Dummy"));
-//        enviro.addEntity(walls);
+        enviro.addEntity(walls);
         
 		running = true;
         while(running){
@@ -83,8 +83,8 @@ public class Screen {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);          // Clear The Screen And The Depth Buffer
 		GL11.glLoadIdentity();                          // Reset The Current Modelview Matrix
 
-//		GL11.glEnable(GL11.GL_BLEND);
-//		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 	}
 	/**
 	 * Handle generic input that should not be object
