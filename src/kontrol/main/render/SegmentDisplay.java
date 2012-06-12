@@ -86,14 +86,14 @@ public class SegmentDisplay {
 	}
 	private void renderSegment(float width, float height){
 	    GL11.glBegin(GL11.GL_QUADS);                        // Draw A Quad
-		GL11.glTexCoord2f(0.0f, 0.0f);
-	    GL11.glVertex3f( width, height, 0);         // Top Right Of The Quad (Front)
-	    GL11.glTexCoord2f(1.0f,0.0f);
-	    GL11.glVertex3f(-width, height, 0);         // Top Left Of The Quad (Front)
-	    GL11.glTexCoord2f(1.0f,1.0f);
-	    GL11.glVertex3f(-width,-height, 0);         // Bottom Left Of The Quad (Front)
-	    GL11.glTexCoord2f(0.0f,1.0f);
-	    GL11.glVertex3f( width,-height, 0);         // Bottom Right Of The Quad (Front)
+			GL11.glTexCoord2f(0.0f, 0.0f);
+		    GL11.glVertex3f( width, height, 0);         // Top Right Of The Quad (Front)
+		    GL11.glTexCoord2f(1.0f,0.0f);
+		    GL11.glVertex3f(-width, height, 0);         // Top Left Of The Quad (Front)
+		    GL11.glTexCoord2f(1.0f,1.0f);
+		    GL11.glVertex3f(-width,-height, 0);         // Bottom Left Of The Quad (Front)
+		    GL11.glTexCoord2f(0.0f,1.0f);
+		    GL11.glVertex3f( width,-height, 0);         // Bottom Right Of The Quad (Front)
 		GL11.glEnd();
 	}
 }

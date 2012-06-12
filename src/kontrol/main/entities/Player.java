@@ -9,6 +9,7 @@ import kontrol.main.weapons.*;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
 public class Player extends Entity {
@@ -17,6 +18,8 @@ public class Player extends Entity {
 	private WeaponSet[] weapons;
 	private int currentWeaponType;
 	private int currentWeaponIndex;
+	
+	private int health;
 	
 	public Player(String texture, Position pos, String playerName) {
 		super(texture, new BoundingBox(1, 1, 1), pos);
@@ -28,6 +31,7 @@ public class Player extends Entity {
 		currentWeaponType = 0;
 		currentWeaponIndex = 0;
 		weapons[Weapon.WEPTYPE_PISTOLS].addWeapon(new Pistol());
+		health = 123;
 	}
 
 	/**
@@ -41,16 +45,41 @@ public class Player extends Entity {
 		//Render Nothing
 	}
 	private SegmentDisplay testDisplay = new SegmentDisplay("", 50, 80, new Position(200,200,0));
+	private SegmentDisplay healthDisplay1 = new SegmentDisplay("", 25, 40, new Position(100,550,0));
+	private SegmentDisplay healthDisplay10 = new SegmentDisplay("", 25, 40, new Position(140,550,0));
+	private SegmentDisplay healthDisplay100 = new SegmentDisplay("", 25, 40, new Position(180,550,0));
 	private int displayShow = 0;
 	private int frames = 0;
 	public void hud(){
-		frames++;
-		if(frames > 60){
-			displayShow++;
-			displayShow = displayShow%10;
-			frames = 0;
+		if(health < 1){
+			
 		}
-		testDisplay.render(SegmentDisplay.SEGMENT_DISPLAY[displayShow]);
+		else{
+			frames++;
+			if(frames > 60){
+				health--;
+				frames = 0;
+			}
+			int healthDigit;
+			health
+			healthDisplay1.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit]);
+			healthDisplay10.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit]);
+			healthDisplay100.render(SegmentDisplay.SEGMENT_DISPLAY[healthDigit]);
+			GL11.glTranslatef(Display.getWidth()/2, Display.getHeight()/2, 0);
+			GL11.glBegin(GL11.GL_LINE_LOOP);
+				GL11.glVertex3f( 0.0f, 8.0f, 0.0f);         // Top 
+				GL11.glVertex3f(-8.0f, 0.0f, 0.0f);         // Left
+				GL11.glVertex3f( 0.0f, -8.0f, 0.0f);         // Bottom
+				GL11.glVertex3f( 8.0f, 0.0f, 0.0f);         // Right
+			GL11.glEnd();
+			GL11.glBegin(GL11.GL_LINE_LOOP);
+			    GL11.glVertex3f( 6.0f, 6.0f, 0.0f);         // Top Right
+			    GL11.glVertex3f(-6.0f, 6.0f, 0.0f);         // Top Left
+			    GL11.glVertex3f(-6.0f,-6.0f, 0.0f);         // Bottom Left
+			    GL11.glVertex3f( 6.0f,-6.0f, 0.0f);         // Bottom Right
+			GL11.glEnd();
+			GL11.glTranslatef(-Display.getWidth()/2, -Display.getHeight()/2, 0);
+		}
 	}
 	public void act(Environment enviro){
 		applyPhysics(enviro);
