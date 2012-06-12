@@ -16,7 +16,7 @@ public abstract class Entity {
 	protected Texture texture;
 	protected BoundingBox boundingBox;
 	protected Position pos;
-	protected Velocity vel;
+	public Velocity vel;
 	protected Acceleration acc;
 	protected Force force;
 	protected float mass;
@@ -197,12 +197,11 @@ public abstract class Entity {
 		  float dx = (this.getPosition().x() - other.getPosition().x());
 		  float dy = (this.getPosition().y() - other.getPosition().y());
 		  float dz = (this.getPosition().z() - other.getPosition().z());
-
-		  if (dx * dx + dy * dy + dz * dz <=  Math.pow((this.boundingBox.getWidth()/2 + other.boundingBox.getWidth()/2)
-		    * (this.boundingBox.getHeight()/2 + other.boundingBox.getHeight()/2) 
-		    * (this.boundingBox.getDepth()/2 + other.boundingBox.getDepth()/2), 1/3.)){
-			  return true;
+		  if(other instanceof Bullet){
+			 hit(); 
+			 return true;
 		  }
+
 		  if (dx * dx + dy * dy + dz * dz <= (this.boundingBox.getWidth()/2) * (this.boundingBox.getHeight()/2) * (this.boundingBox.getDepth()/2)) {
 			  if(dx > dy && dx > dz){
 					this.getPosition().setX(this.getPosition().x() + (this.boundingBox.getWidth()/2 + other.boundingBox.getWidth()/2 - dx)/2);
@@ -217,6 +216,10 @@ public abstract class Entity {
 			  return false;
 		  }
 	 }
+	private void hit() {
+		// TODO Auto-generated method stub
+		
+	}
 	/**
 	 * This method will return whether or not this entity and
 	 * a position are colliding with each other
