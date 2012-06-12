@@ -21,6 +21,7 @@ public abstract class Entity {
 	protected Force force;
 	protected float mass;
 	protected String name;
+	protected Position gravity;
 	
 	protected static long totalEntities = 1;
 	
@@ -150,19 +151,22 @@ public abstract class Entity {
 	}
 	
 	public void applyPhysics(Environment enviro){
-		//TODO Make the gravity fuction only work when not collided
 		if(!(collidedWith(enviro) == null)){
 			force.setForce(
 					(float)(-force.getXForce()-acc.getXAcceleration()*mass-(vel.getXVelocity()/(.06))*mass),
 					(float)(-force.getYForce()-acc.getYAcceleration()*mass-(vel.getYVelocity()/(.06))*mass), 
 					(float)(-force.getXForce()-acc.getXAcceleration()*mass-(vel.getXVelocity()/(.06))*mass));
+			force.setForce(0, 0, 0);
+			acc.setAcceleration(0, 0, 0);
+			vel.setVelocity(0, 0, 0);
 		}
 		else{
-			gravity();
+			if(gravity != null)
+				gravity(gravity);
 		}
 	}
-	public void gravity(){
-		//TODO Make the gravity function let you fall
+	public void gravity(Position g){
+		this.setForce(g, 9.8f);
 		System.out.println("Applied Gravity!");
 	}
 	
@@ -197,6 +201,13 @@ public abstract class Entity {
 			  return true;
 		  }
 		  if (dx * dx + dy * dy + dz * dz <= (this.boundingBox.getWidth()/2) * (this.boundingBox.getHeight()/2) * (this.boundingBox.getDepth()/2)) {
+			  if(dx > dy && dx > dz){
+					this.getPosition().setX(this.getPosition().x() + (this.boundingBox.getWidth()/2 + other.boundingBox.getWidth()/2 - dx)/2);
+				}else if(dy > dx && dy > dz){
+					this.getPosition().setY(this.getPosition().y() + (this.boundingBox.getHeight()/2 + other.boundingBox.getHeight()/2 - dy)/2);
+				}else if(dz > dx && dz > dy){
+					this.getPosition().setZ(this.getPosition().z() + (this.boundingBox.getDepth()/2 + other.boundingBox.getDepth()/2 - dz)/2);
+				}
 			  return true;
 
 		  }else {
@@ -225,8 +236,8 @@ public abstract class Entity {
 		}
 		return false;
 	}
-	public void setForce(Position position) {
-		force.setForceTo(getPosition(), position, 9.8f);
+	public void setForce(Position position, float magnitude) {
+		force.setForceTo(getPosition(), position, magnitude);
 		acc.setAccelerationFromForce(force, mass);
 		vel.accelerate(acc);
 	}
