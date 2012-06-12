@@ -3,6 +3,7 @@ package kontrol.main;
 import java.nio.FloatBuffer;
 
 import kontrol.main.entities.Cube;
+import kontrol.main.entities.Entity;
 import kontrol.main.entities.Player;
 import kontrol.main.physics.BoundingBox;
 import kontrol.main.util.Position;
@@ -53,7 +54,7 @@ public class PhysicsDemo {
         while(running){
         	cube1.setForce(cube2.getPosition(), 12);
         	cube2.setForce(cube1.getPosition(), 12);
-        	for(entity x: enviro.)
+        	for(Entity x: enviro.)
             if(Display.isCloseRequested())
             	running=false;
             inputHandling();
