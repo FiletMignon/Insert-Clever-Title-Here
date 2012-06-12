@@ -61,9 +61,26 @@ public class SegmentDisplay {
 			GL11.glTranslatef(-width/2, -height/4, 0);
 		}
 		if(displaySegments[3]){
-			GL11.glTranslatef(0, -height/2, 0);
-			renderSegment(width*0.6f, height*0.125f);
 			GL11.glTranslatef(0, height/2, 0);
+			renderSegment(width*0.6f, height*0.125f);
+			GL11.glTranslatef(0, -height/2, 0);
+		}
+		if(displaySegments[4]){
+			GL11.glTranslatef(-width/2, height/4, 0);
+			GL11.glRotatef(90, 0.0f, 0.0f, 1.0f);
+			renderSegment(width*0.6f, height*0.125f);
+			GL11.glRotatef(-90, 0.0f, 0.0f, 1.0f);
+			GL11.glTranslatef(width/2, -height/4, 0);
+		}
+		if(displaySegments[5]){
+			GL11.glTranslatef(-width/2, -height/4, 0);
+			GL11.glRotatef(90, 0.0f, 0.0f, 1.0f);
+			renderSegment(width*0.6f, height*0.125f);
+			GL11.glRotatef(-90, 0.0f, 0.0f, 1.0f);
+			GL11.glTranslatef(width/2, height/4, 0);
+		}
+		if(displaySegments[6]){
+			renderSegment(width*0.6f, height*0.125f);
 		}
 		GL11.glTranslatef(-pos.x(), -pos.y(), 0);
 	}

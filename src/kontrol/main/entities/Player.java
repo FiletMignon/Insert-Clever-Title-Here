@@ -42,10 +42,15 @@ public class Player extends Entity {
 	}
 	private SegmentDisplay testDisplay = new SegmentDisplay("", 50, 80, new Position(200,200,0));
 	private int displayShow = 0;
+	private int frames = 0;
 	public void hud(){
-		displayShow = displayShow%10;
-		testDisplay.render(SegmentDisplay.SEGMENT_DISPLAY[8]);
-		displayShow++;
+		frames++;
+		if(frames > 60){
+			displayShow++;
+			displayShow = displayShow%10;
+			frames = 0;
+		}
+		testDisplay.render(SegmentDisplay.SEGMENT_DISPLAY[displayShow]);
 	}
 	public void act(Environment enviro){
 		applyPhysics(enviro);
