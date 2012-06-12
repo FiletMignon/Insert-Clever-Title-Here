@@ -77,4 +77,7 @@ public class Environment {
 			players[i].handleWeapons(this);
 		}
 	}
+	public ArrayList<Entity> getEntities() {
+		return entities;
+	}
 }

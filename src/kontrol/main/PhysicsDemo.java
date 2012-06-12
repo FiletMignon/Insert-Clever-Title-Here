@@ -42,8 +42,8 @@ public class PhysicsDemo {
         init(title);
         Cube walls = new Cube("walls.png", new BoundingBox(50,50,50), new Position(0,0,0));
 
-        Cube cube1 = new Cube("default.png", new BoundingBox(5, 4, 7), new Position(2,-18, 12));
-        Cube cube2 = new Cube("spawnedCube.png", new BoundingBox(16, 1, 3), new Position(20, 20, 20 ));
+        Cube cube1 = new Cube("default.png", new BoundingBox(5, 4, 7), new Position(4,0,16));
+        Cube cube2 = new Cube("spawnedCube.png", new BoundingBox(1,1,1), new Position(-4,0,16 ));
         
         enviro.addPlayer(0, new Player("Player", new Position(0,0,1), "Test Dummy"));
         enviro.addEntity(walls);
@@ -54,7 +54,9 @@ public class PhysicsDemo {
         while(running){
         	cube1.setForce(cube2.getPosition(), 12);
         	cube2.setForce(cube1.getPosition(), 12);
-        	for(Entity x: enviro.)
+        	for(Entity x: enviro.getEntities()){
+        		x.applyPhysics(enviro);
+        	}
             if(Display.isCloseRequested())
             	running=false;
             inputHandling();
