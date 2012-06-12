@@ -151,12 +151,14 @@ public abstract class Entity {
 	
 	public void applyPhysics(Environment enviro){
 		//TODO Make the gravity fuction only work when not collided
-		if(collidedWith(enviro) == null){
+		if(!(collidedWith(enviro) == null)){
+			force.setForce(
+					(float)(-force.getXForce()-acc.getXAcceleration()*mass-(vel.getXVelocity()/(.06))*mass),
+					(float)(-force.getYForce()-acc.getYAcceleration()*mass-(vel.getYVelocity()/(.06))*mass), 
+					(float)(-force.getXForce()-acc.getXAcceleration()*mass-(vel.getXVelocity()/(.06))*mass));
+		}
+		else{
 			gravity();
-		}else{
-			vel.setVelocity(0, 0, 0);
-			force.setForce(0, 0, 0);
-			acc.setAcceleration(0, 0, 0);
 		}
 	}
 	public void gravity(){

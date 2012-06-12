@@ -17,29 +17,31 @@ public class Force {
 		yFor = y;
 		zFor = z;
 	}
+	//broken, do not use
 	public void setForceTo(Position self, Position other, float magnitude){
-		float xy = 0;
-		float yz = 0;
-		
-		//set angles
-		if(other.x() < 0){
-			xy = -1 * (float) Math.atan2(other.y(), other.x());
+		double x = (self.x() - other.x());
+		double y = (self.y() - other.y());
+		double z = (self.z() - other.z());
+		double xy = 0;
+		double xz = 0;
+		if(x != 0){
+			if(y/x < 0){
+				xy = (Math.atan(y/x));
+			}
+			else{
+				xy = -(Math.atan(y/x) + 90);
+			}
+			if(z/x < 0){
+				xz = (Math.atan(z/x));
+			}
+			else{
+				xz = -(Math.atan(z/ x) + 90);
+			}
 		}
-		else{
-			xy = (float) Math.atan2(other.y(), other.x());
-		}
-		if(other.y() < 0){
-			yz = -1 * (float) Math.atan2(other.z(), other.y());
-		}
-		else{
-			yz = (float) Math.atan2(other.z(), other.y());
-		}
-		
-		//calculate vectors
-		xFor = magnitude * (float)Math.cos(xy);
-		yFor = magnitude * (float)Math.sin(xy);
-		zFor = magnitude * (float)Math.cos(yz);
-//		System.out.println("X:"+ xFor +" Y:"+ yFor+" Z:"+ zFor);
+		x = (Math.cos(xy) * magnitude);
+		y = (Math.sin(xy) * magnitude);
+		z = (Math.sin(xz) * magnitude);
+		setForce((float)x, (float)y, (float)z);
 	}
 	public float getXForce(){
 		return xFor;
