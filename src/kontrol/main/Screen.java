@@ -85,6 +85,22 @@ public class Screen {
 
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		
+        GL11.glDepthFunc(GL11.GL_LEQUAL); // The Type Of Depth Testing To Do
+
+        GL11.glMatrixMode(GL11.GL_PROJECTION); // Select The Projection Matrix
+        GL11.glLoadIdentity(); // Reset The Projection Matrix
+
+        // Calculate The Aspect Ratio Of The Window
+        GLU.gluPerspective(
+          45.0f,
+          (float) Display.getWidth() / (float) Display.getHeight(),
+          0.1f,
+          100.0f);
+        GL11.glMatrixMode(GL11.GL_MODELVIEW); // Select The Modelview Matrix
+
+        // Really Nice Perspective Calculations
+        GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST);
 	}
 	/**
 	 * Handle generic input that should not be object
