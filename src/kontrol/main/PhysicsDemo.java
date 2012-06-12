@@ -50,10 +50,11 @@ public class PhysicsDemo {
         enviro.addEntity(cube1);
         enviro.addEntity(cube2);
         
+    	cube1.setForce(-10, 0, 0);
+    	cube2.setForce(10, 0, 0);
 		running = true;
         while(running){
-        	cube1.setForce(-4, 0, 0);
-        	cube2.setForce(4, 0, 0);
+
         	
 //        	for(Entity x: enviro.getEntities()){
 //        		x.applyPhysics(enviro);
