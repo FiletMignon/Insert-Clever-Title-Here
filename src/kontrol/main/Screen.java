@@ -54,9 +54,10 @@ public class Screen {
         while(running){
             if(Display.isCloseRequested())
             	running=false;
+            render();
             inputHandling();
             enviro.actAllTheActions();
-            render();
+            displayHUD();
             Display.sync(60);
             Display.update();
         }
@@ -75,6 +76,21 @@ public class Screen {
 		enviro.renderAllTheEntities();
         //RENDER STUFF/////////////////////
 	}
+	public void displayHUD(){
+		initHUD();
+		enviro.getPlayer(0).hud();
+	}
+	public void initHUD(){
+		GL11.glMatrixMode(GL11.GL_PROJECTION);
+	    GL11.glLoadIdentity();
+
+	    GLU.gluOrtho2D(0.0f, Display.getWidth(), Display.getHeight(), 0.0f);
+
+	    GL11.glMatrixMode(GL11.GL_MODELVIEW);
+	    GL11.glLoadIdentity();
+	    GL11.glTranslatef(0.375f, 0.375f, 0.0f);
+	    GL11.glDisable(GL11.GL_DEPTH_TEST);
+	}
 	/**
 	 * Used to initialize certain OpenGL variables
 	 * before rendering stuff to the Display
@@ -87,10 +103,13 @@ public class Screen {
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
         GL11.glDepthFunc(GL11.GL_LEQUAL); // The Type Of Depth Testing To Do
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
 
         GL11.glMatrixMode(GL11.GL_PROJECTION); // Select The Projection Matrix
         GL11.glLoadIdentity(); // Reset The Projection Matrix
 
+        GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
+        
         // Calculate The Aspect Ratio Of The Window
         GLU.gluPerspective(
           45.0f,

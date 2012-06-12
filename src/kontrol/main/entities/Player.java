@@ -3,6 +3,7 @@ package kontrol.main.entities;
 
 import kontrol.main.Environment;
 import kontrol.main.physics.BoundingBox;
+import kontrol.main.render.SegmentDisplay;
 import kontrol.main.util.Position;
 import kontrol.main.weapons.*;
 
@@ -38,6 +39,13 @@ public class Player extends Entity {
 	}
 	public void render(){
 		//Render Nothing
+	}
+	private SegmentDisplay testDisplay = new SegmentDisplay("", 50, 80, new Position(200,200,0));
+	private int displayShow = 0;
+	public void hud(){
+		displayShow = displayShow%10;
+		testDisplay.render(SegmentDisplay.SEGMENT_DISPLAY[8]);
+		displayShow++;
 	}
 	public void act(Environment enviro){
 		applyPhysics(enviro);
