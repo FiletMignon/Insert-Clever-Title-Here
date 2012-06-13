@@ -10,6 +10,7 @@ import kontrol.main.util.Position;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
@@ -129,7 +130,15 @@ public class Screen {
 	 * ESCAPEKEY - Quit Window
 	 * Toggle F1 - Enable pseudo wire-frame mode
 	 */
+	private boolean spaceWasPressed = false;
     private void inputHandling() {
+    	if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !spaceWasPressed){
+    		Mouse.setGrabbed(true);
+    		spaceWasPressed = true;
+    	}
+    	else if(!Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
+    		spaceWasPressed = false;
+    	}
         if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
             running = false;
         }
