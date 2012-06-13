@@ -18,9 +18,9 @@ public class Force {
 		zFor = z;
 	}
 	public void setForceTo(Position self, Position other, float magnitude){
-		double x = (other.x() - self.x());
-		double y = (other.y() - self.y());
-		double z = (other.z() - self.z());
+		double x = (self.x() - other.x());
+		double y = (self.y() - other.y());
+		double z = (self.z() - other.z());
 		double xy = 0;
 		double xz = 0;
 		if(x != 0){
