@@ -133,7 +133,7 @@ public class Screen {
 	private boolean spaceWasPressed = false;
     private void inputHandling() {
     	if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !spaceWasPressed){
-    		Mouse.setGrabbed(true);
+    		Mouse.setGrabbed(!Mouse.isGrabbed());
     		spaceWasPressed = true;
     	}
     	else if(!Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
