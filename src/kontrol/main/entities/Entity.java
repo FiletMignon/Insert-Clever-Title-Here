@@ -153,7 +153,7 @@ public abstract class Entity {
 	}
 	
 	public void applyPhysics(Environment enviro){
-		if(!(collidedWith(enviro) == null)){
+		if((collidedWith(enviro) == null)){
 			force.setForce(
 					(float)(-force.getXForce()-acc.getXAcceleration()*mass-(vel.getXVelocity()/(.06))*mass),
 					(float)(-force.getYForce()-acc.getYAcceleration()*mass-(vel.getYVelocity()/(.06))*mass), 
@@ -204,9 +204,9 @@ public abstract class Entity {
 					 hit(); 
 					 return true;
 				  }
-			  if(last == pos){
-				  return true;
-			  }
+			  if(last != null && last.x() != pos.x() && last.y() != pos.y() && last.z() != pos.z()){
+				 
+			  
 			  if(dx > dy && dx > dz){
 					this.getPosition().setX(this.getPosition().x() + (this.boundingBox.getWidth()/2 + other.boundingBox.getWidth()/2 - dx)/2);
 				}else if(dy > dx && dy > dz){
@@ -214,7 +214,7 @@ public abstract class Entity {
 				}else if(dz > dx && dz > dy){
 					this.getPosition().setZ(this.getPosition().z() + (this.boundingBox.getDepth()/2 + other.boundingBox.getDepth()/2 - dz)/2);
 				}
-
+			  }
 			  return true;
 
 		  }else {
