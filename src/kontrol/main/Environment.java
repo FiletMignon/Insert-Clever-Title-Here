@@ -42,6 +42,14 @@ public class Environment {
 	public void addPlayer(int index, Player player){
 		players[index] = player;
 	}
+	public int getAmountOfPlayers(){
+		for(int i = 0; i < players.length; i++){
+			if(players[i] == null){
+				return i+1;
+			}
+		}
+		return 0;
+	}
 	
 	public int getEntityAmount(){
 		return entities.size();

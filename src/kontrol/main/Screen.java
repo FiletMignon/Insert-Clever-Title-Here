@@ -3,6 +3,7 @@ package kontrol.main;
 import java.nio.FloatBuffer;
 
 import kontrol.main.entities.Cube;
+import kontrol.main.entities.Entity;
 import kontrol.main.entities.Player;
 import kontrol.main.physics.BoundingBox;
 import kontrol.main.util.Position;
@@ -40,17 +41,6 @@ public class Screen {
 		this.height = height;
 		enviro = new Environment(25, 25, 25);
         init(title);
-        Cube walls = new Cube("walls.png", new BoundingBox(50,50,50), new Position(0,0,0));
-
-//        for(int x = 0; x < 10; x++){
-//            for(int y = 0; y < 10; y++){
-//            	enviro.addEntity(new Cube("", new BoundingBox(1, 1, 1), new Position(x-5,-8,y-5)));
-//            }
-//        }
-        
-        enviro.addPlayer(0, new Player("Player", new Position(0,0,1), "Test Dummy"));
-        enviro.addEntity(walls);
-        
 		running = true;
         while(running){
             if(Display.isCloseRequested())
@@ -64,6 +54,21 @@ public class Screen {
         }
 
         Display.destroy();
+	}
+	
+	public boolean addEntity(Entity ent){
+		if(ent instanceof Player){
+			return false;
+		}
+		enviro.addEntity(ent);
+		return true;
+	}
+
+	public void setMainPlayer(Player player){
+		enviro.addPlayer(0, player);
+	}
+	public void addPlayer(Player player){
+		enviro.addPlayer(enviro.getAmountOfPlayers()-1, player);
 	}
 	
 	/**
