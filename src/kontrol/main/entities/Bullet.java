@@ -16,7 +16,7 @@ public class Bullet extends Entity{
 		this.shootFrom = shootFrom;
 		this.shootTo = shootTo;
 		this.mass = 5;
-		
+		setForce(this.shootFrom, 1.0f);
 	}
 	public void render(){
 		float width = boundingBox.getWidth()/2;
@@ -61,7 +61,6 @@ public class Bullet extends Entity{
 	}
 	public void act(Environment enviro){
 		applyVelocity();
-//		setForce(force);
 		int entityAmount = enviro.getEntityAmount();
 		for(int i = 0; i < entityAmount; i++){
 			Entity indexedEnt = enviro.getEntity(i);

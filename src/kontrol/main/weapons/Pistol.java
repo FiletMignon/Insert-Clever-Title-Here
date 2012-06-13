@@ -20,9 +20,10 @@ public class Pistol extends Weapon{
 	public void fire(Player player, Environment enviro){
 		if(canShoot){
 			canShoot = false;
+			float xPos = player.getPosition().x();
+			float yPos = player.getPosition().x();
+			float zPos = player.getPosition().x();
 			Position posToShootFrom = player.getNewPosition();
-			posToShootFrom.forward(1.5f);
-			posToShootFrom = posToShootFrom.inverse();
 			Position posToShootTo = Position.screenToWorld(Display.getWidth()/2, Display.getHeight()/2);
 			posToShootFrom.setXRot(player.getPosition().xRot());
 			posToShootFrom.setYRot(player.getPosition().yRot());
