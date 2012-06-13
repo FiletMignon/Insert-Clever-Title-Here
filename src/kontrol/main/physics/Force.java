@@ -37,8 +37,8 @@ public class Force {
 				xz = -(Math.atan(z/ x) - Math.PI/2);
 			}
 		}
-		x = (Math.cos(xy) * magnitude);
-		y = (Math.sin(xy) * magnitude);
+		x = (Math.sin(xy) * magnitude);
+		y = (Math.cos(xy) * magnitude);
 		z = (Math.cos(xz) * magnitude);
 		setForce((float)x, (float)y, (float)z);
 	}
