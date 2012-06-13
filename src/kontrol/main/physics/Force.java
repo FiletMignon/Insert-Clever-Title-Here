@@ -39,7 +39,7 @@ public class Force {
 		}
 		x = (Math.cos(xy) * magnitude);
 		y = (Math.sin(xy) * magnitude);
-		z = (Math.sin(xz) * magnitude);
+		z = (Math.cos(xz) * magnitude);
 		setForce((float)x, (float)y, (float)z);
 	}
 	public float getXForce(){
