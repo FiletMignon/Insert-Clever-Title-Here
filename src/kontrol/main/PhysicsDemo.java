@@ -51,7 +51,7 @@ public class PhysicsDemo {
         enviro.addEntity(cube2);
         
     	cube1.setForce(cube2.getPosition(), 10);
-    	cube1.applyVelocity(1, 0, 0);
+    	cube1.setVelocity(1, 0, 0);
 		running = true;
         while(running){
 

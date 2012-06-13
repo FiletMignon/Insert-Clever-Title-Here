@@ -149,7 +149,7 @@ public abstract class Entity {
 	 * @param enviro The environment this entity is in
 	 */
 	public void act(Environment enviro){
-		applyPhysics(enviro);
+		applyPhysics();
 	}
 	
 	public void applyPhysics(Environment enviro){
