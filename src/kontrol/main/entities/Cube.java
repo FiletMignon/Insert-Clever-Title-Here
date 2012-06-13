@@ -18,7 +18,7 @@ public class Cube extends Entity{
 			Entity indexedEnt = enviro.getEntity(i);
 			if(!(this == indexedEnt)){
 				if(!isCollidedWith(indexedEnt)){
-					applyVelocity();
+					applyPhysics(enviro);
 				System.out.println(name + " has collided with " + indexedEnt.name);
 			}
 			}else{

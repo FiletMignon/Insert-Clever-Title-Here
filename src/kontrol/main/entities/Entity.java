@@ -153,7 +153,7 @@ public abstract class Entity {
 	}
 	
 	public void applyPhysics(Environment enviro){
-		if(!(collidedWith(enviro) == null)){
+		if((collidedWith(enviro) == null)){
 			force.setForce(
 					(float)(-force.getXForce()-acc.getXAcceleration()*mass-(vel.getXVelocity()/(.06))*mass),
 					(float)(-force.getYForce()-acc.getYAcceleration()*mass-(vel.getYVelocity()/(.06))*mass), 
