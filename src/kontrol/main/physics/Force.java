@@ -18,9 +18,9 @@ public class Force {
 		zFor = z;
 	}
 	public void setForceTo(Position self, Position other, float magnitude){
-		double x = (self.x() - other.x());
-		double y = (self.y() - other.y());
-		double z = (self.z() - other.z());
+		double x = (other.x() - self.x());
+		double y = (other.y() - self.y());
+		double z = (other.z() - self.z());
 		double xy = 0;
 		double xz = 0;
 		if(x != 0){
@@ -37,9 +37,9 @@ public class Force {
 				xz = -(Math.atan(z/ x) - Math.PI/2);
 			}
 		}
-		x = (Math.sin(xy) * magnitude);
-		y = (Math.cos(xy) * magnitude);
-		z = (Math.cos(xz) * magnitude);
+		x = (Math.cos(xy) * magnitude);
+		y = (Math.sin(xy) * magnitude);
+		z = (Math.sin(xz) * magnitude);
 		setForce((float)x, (float)y, (float)z);
 	}
 	public float getXForce(){
