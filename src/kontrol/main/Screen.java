@@ -18,8 +18,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
 public class Screen {
-	private boolean running;
-
 	private int width;
 	private int height;
 
@@ -41,6 +39,10 @@ public class Screen {
 		this.height = height;
 		enviro = new Environment(25, 25, 25);
         init(title);
+	}
+
+	private boolean running;
+	public void run(){
 		running = true;
         while(running){
             if(Display.isCloseRequested())
