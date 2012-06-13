@@ -100,10 +100,15 @@ public class Player extends Entity {
 	 * Handle the input of the player and
 	 * move accordingly
 	 */
+	private boolean useMouse = true;
 	public void input(){
-    	if(Mouse.isGrabbed()){
+    	if(useMouse){
         	pos.addXRot(-Mouse.getDY()*mouseSensivity);
         	pos.addYRot(Mouse.getDX()*mouseSensivity);
+    		Mouse.setGrabbed(true);
+    	}
+    	else{
+    		Mouse.setGrabbed(false);
     	}
         if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
         	speed = 0.25f;
