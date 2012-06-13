@@ -60,16 +60,20 @@ public class Player extends Entity {
 			displayHealthHUD();
 			GL11.glTranslatef(Display.getWidth()/2, Display.getHeight()/2, 0);
 			GL11.glBegin(GL11.GL_LINE_LOOP);
-				GL11.glVertex3f( 0.0f, 8.0f, 0.0f);         // Top 
-				GL11.glVertex3f(-8.0f, 0.0f, 0.0f);         // Left
-				GL11.glVertex3f( 0.0f, -8.0f, 0.0f);         // Bottom
-				GL11.glVertex3f( 8.0f, 0.0f, 0.0f);         // Right
+				GL11.glVertex3f( 0.0f, -8.0f, 0.0f);
+				GL11.glVertex3f( 0.0f, -4.0f, 0.0f);
 			GL11.glEnd();
 			GL11.glBegin(GL11.GL_LINE_LOOP);
-			    GL11.glVertex3f( 6.0f, 6.0f, 0.0f);         // Top Right
-			    GL11.glVertex3f(-6.0f, 6.0f, 0.0f);         // Top Left
-			    GL11.glVertex3f(-6.0f,-6.0f, 0.0f);         // Bottom Left
-			    GL11.glVertex3f( 6.0f,-6.0f, 0.0f);         // Bottom Right
+				GL11.glVertex3f(-8.0f, 0.0f, 0.0f);
+				GL11.glVertex3f(-4.0f, 0.0f, 0.0f);
+			GL11.glEnd();
+			GL11.glBegin(GL11.GL_LINE_LOOP);
+				GL11.glVertex3f( 0.0f, 8.0f, 0.0f);
+				GL11.glVertex3f( 0.0f, 4.0f, 0.0f);
+			GL11.glEnd();
+			GL11.glBegin(GL11.GL_LINE_LOOP);
+				GL11.glVertex3f(8.0f, 0.0f, 0.0f);
+				GL11.glVertex3f(4.0f, 0.0f, 0.0f);
 			GL11.glEnd();
 			GL11.glTranslatef(-Display.getWidth()/2, -Display.getHeight()/2, 0);
 		}

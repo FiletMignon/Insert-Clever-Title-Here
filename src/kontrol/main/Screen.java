@@ -123,7 +123,7 @@ public class Screen {
           45.0f,
           (float) Display.getWidth() / (float) Display.getHeight(),
           0.1f,
-          100.0f);
+          5000.0f);
         GL11.glMatrixMode(GL11.GL_MODELVIEW); // Select The Modelview Matrix
 
         // Really Nice Perspective Calculations
@@ -187,13 +187,13 @@ public class Screen {
           45.0f,
           (float) Display.getWidth() / (float) Display.getHeight(),
           0.1f,
-          100.0f);
+          5000.0f);
         GL11.glMatrixMode(GL11.GL_MODELVIEW); // Select The Modelview Matrix
 
         // Really Nice Perspective Calculations
         GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST);
         
-        GL11.glEnable(GL11.GL_FOG);
+//        GL11.glEnable(GL11.GL_FOG);
 
         FloatBuffer fogColor = BufferUtils.createFloatBuffer(4);
         fogColor.put(0.75f).put(0.75f).put(0.75f).put(1.0f).flip(); //Make the color for the fog
