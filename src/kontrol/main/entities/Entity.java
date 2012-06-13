@@ -16,12 +16,14 @@ public abstract class Entity {
 	protected Texture texture;
 	protected BoundingBox boundingBox;
 	protected Position pos;
-	public Velocity vel;
+	protected Velocity vel;
 	protected Acceleration acc;
 	protected Force force;
 	protected float mass;
 	protected String name;
 	protected Position gravity;
+	protected Position last;
+	
 	
 	protected static long totalEntities = 1;
 	
@@ -147,7 +149,7 @@ public abstract class Entity {
 	 * @param enviro The environment this entity is in
 	 */
 	public void act(Environment enviro){
-		//Do everything
+		applyPhysics(enviro);
 	}
 	
 	public void applyPhysics(Environment enviro){
@@ -197,12 +199,14 @@ public abstract class Entity {
 		  float dx = (this.getPosition().x() - other.getPosition().x());
 		  float dy = (this.getPosition().y() - other.getPosition().y());
 		  float dz = (this.getPosition().z() - other.getPosition().z());
-		  if(other instanceof Bullet){
-			 hit(); 
-			 return true;
-		  }
-
 		  if (dx * dx + dy * dy + dz * dz <= (this.boundingBox.getWidth()/2) * (this.boundingBox.getHeight()/2) * (this.boundingBox.getDepth()/2)) {
+			  if(other instanceof Bullet){
+					 hit(); 
+					 return true;
+				  }
+			  if(last == pos){
+				  return true;
+			  }
 			  if(dx > dy && dx > dz){
 					this.getPosition().setX(this.getPosition().x() + (this.boundingBox.getWidth()/2 + other.boundingBox.getWidth()/2 - dx)/2);
 				}else if(dy > dx && dy > dz){
@@ -210,6 +214,7 @@ public abstract class Entity {
 				}else if(dz > dx && dz > dy){
 					this.getPosition().setZ(this.getPosition().z() + (this.boundingBox.getDepth()/2 + other.boundingBox.getDepth()/2 - dz)/2);
 				}
+
 			  return true;
 
 		  }else {
@@ -247,7 +252,11 @@ public abstract class Entity {
 		acc.setAccelerationFromForce(force, mass);
 		vel.accelerate(acc);
 	}
+	public void setVelocity(float x, float y, float z){
+		vel.setVelocity(x, y, z);
+	}
 	public void applyVelocity(){
+		last = pos;
 		pos.setX(pos.x()+vel.getXVelocity());
 		pos.setY(pos.y()+vel.getYVelocity());
 		pos.setZ(pos.z()+vel.getZVelocity());
