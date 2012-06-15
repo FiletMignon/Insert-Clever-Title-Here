@@ -13,7 +13,7 @@ import kontrol.main.util.Position;
 
 public class Pistol extends Weapon{
 	public Pistol() {
-		weaponType = WEPTYPE_PISTOLS;
+		super(Weapon.WEPTYPE_PISTOLS);
 	}
 	private int framesSinceLastShot = 0;
 	private boolean canShoot = true;

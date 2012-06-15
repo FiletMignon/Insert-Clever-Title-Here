@@ -2,11 +2,8 @@ package kontrol.main;
 
 import java.nio.FloatBuffer;
 
-import kontrol.main.entities.Cube;
 import kontrol.main.entities.Entity;
 import kontrol.main.entities.Player;
-import kontrol.main.physics.BoundingBox;
-import kontrol.main.util.Position;
 
 
 import org.lwjgl.BufferUtils;
@@ -140,6 +137,7 @@ public class Screen {
 	private boolean spaceWasPressed = false;
     private void inputHandling() {
     	if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && !spaceWasPressed){
+    		Mouse.setCursorPosition(Display.getWidth()/2, Display.getHeight()/2);
     		Mouse.setGrabbed(!Mouse.isGrabbed());
     		spaceWasPressed = true;
     	}

@@ -170,4 +170,11 @@ public class Position {
 		
 		return (float) Math.sqrt(sqX+sqY+sqZ);
 	}
+	public static Position midpoint(Position pos1, Position pos2){
+		float x = (pos1.x() + pos2.x()) / 2;
+		float y = (pos1.y() + pos2.y()) / 2;
+		float z = (pos1.z() + pos2.z()) / 2;
+		
+		return new Position(x, y, z);
+	}
 }

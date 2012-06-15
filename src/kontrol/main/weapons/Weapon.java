@@ -11,7 +11,8 @@ public abstract class Weapon {
 	
 	protected int weaponType;
 	
-	public Weapon(){
+	public Weapon(int weaponType){
+		this.weaponType = weaponType;
 	}
 	public void fire(Player player, Environment enviro){
 	}
