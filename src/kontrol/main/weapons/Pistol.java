@@ -26,7 +26,7 @@ public class Pistol extends Weapon{
 			Position posToShootFrom = new Position(xPos, yPos, zPos);
 			Position posToShootTo = Position.screenToWorld(Display.getWidth()/2, Display.getHeight()/2);
 			//TODO Make sure the gun shoots forward
-			shoot(new Bullet(posToShootFrom, posToShootTo), enviro);
+			shoot(new Bullet(posToShootFrom, posToShootTo, enviro), enviro);
 			System.out.println(this.getClass().getSimpleName() + " Fired!");
 		}
 		if(!canShoot){
@@ -46,7 +46,7 @@ public class Pistol extends Weapon{
 			canShoot = false;
 			Position posToCreateCube = Position.screenToWorld(Display.getWidth()/2, Display.getHeight()/2);
 			BoundingBox bounds = new BoundingBox(1,1,1);
-			shoot(new SpawnedCube("spawnedcube.png", bounds, posToCreateCube), enviro);
+			shoot(new SpawnedCube("spawnedcube.png", bounds, posToCreateCube, enviro), enviro);
 			System.out.println(this.getClass().getSimpleName() + " Made A Cube");
 		}
 		if(!canShoot){

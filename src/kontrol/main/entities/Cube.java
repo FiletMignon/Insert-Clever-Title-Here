@@ -7,8 +7,8 @@ import kontrol.main.util.Position;
 
 
 public class Cube extends Entity{
-	public Cube(String texture, BoundingBox boundingBox, Position pos) {
-		super(texture, boundingBox, pos);
+	public Cube(String texture, BoundingBox boundingBox, Position pos, Environment enviro) {
+		super(texture, boundingBox, pos, enviro);
 		vel = new Velocity();
 	}
  

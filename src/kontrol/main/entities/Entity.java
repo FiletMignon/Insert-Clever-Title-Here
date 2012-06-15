@@ -24,6 +24,7 @@ public abstract class Entity {
 	protected Position gravity;
 	protected Position last;
 	
+	protected Environment enviro;
 	
 	protected static long totalEntities = 1;
 	
@@ -33,7 +34,7 @@ public abstract class Entity {
 	 * @param boundingBox The bounding box of the entity
 	 * @param pos The position of the entity
 	 */
-	public Entity(String texture, BoundingBox boundingBox, Position pos){
+	public Entity(String texture, BoundingBox boundingBox, Position pos, Environment enviro){
 		try {
 			this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + texture));
 		} catch (Exception d) {

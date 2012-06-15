@@ -11,8 +11,8 @@ public class Bullet extends Entity{
 	private Position shootTo;
 	private Position shootFrom;
 	
-	public Bullet(Position shootFrom, Position shootTo){
-		super(null, new BoundingBox(0.05f, 0.05f, 0.05f), shootFrom);
+	public Bullet(Position shootFrom, Position shootTo, Environment enviro){
+		super(null, new BoundingBox(0.05f, 0.05f, 0.05f), shootFrom, enviro);
 		this.shootFrom = shootFrom;
 		this.shootTo = new Position(shootTo.x(), shootTo.y(), shootTo.z());
 		this.mass = 5;

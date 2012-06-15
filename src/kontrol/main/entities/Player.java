@@ -21,8 +21,8 @@ public class Player extends Entity {
 	
 	private int health;
 	
-	public Player(String texture, Position pos, String playerName) {
-		super(texture, new BoundingBox(1, 1, 1), pos);
+	public Player(String texture, Position pos, String playerName, Environment enviro) {
+		super(texture, new BoundingBox(1, 1, 1), pos, enviro);
 		this.playerName = playerName;
 		weapons = new WeaponSet[9];
 		for(int i = 0; i < 9; i++){

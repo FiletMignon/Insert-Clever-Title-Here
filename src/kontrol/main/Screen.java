@@ -69,6 +69,9 @@ public class Screen {
 	public void addPlayer(Player player){
 		enviro.addPlayer(enviro.getAmountOfPlayers()-1, player);
 	}
+	public Environment getEnvironment(){
+		return enviro;
+	}
 	
 	/**
 	 * Render stuff in between the two

@@ -5,8 +5,8 @@ import kontrol.main.physics.BoundingBox;
 import kontrol.main.util.Position;
 
 public class SpawnedCube extends Cube {
-	public SpawnedCube(String texture, BoundingBox boundingBox, Position pos) {
-		super(texture, boundingBox, pos);
+	public SpawnedCube(String texture, BoundingBox boundingBox, Position pos, Environment enviro) {
+		super(texture, boundingBox, pos, enviro);
 	}
 
 	public void act(Environment enviro){
