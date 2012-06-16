@@ -262,7 +262,7 @@ public abstract class Entity {
 		pos.setY(pos.y()+vel.getYVelocity());
 		pos.setZ(pos.z()+vel.getZVelocity());
 	}
-	public void removeSelfFromEnviroment(Environment enviro){
+	public void removeSelfFromEnviroment(){
 		int entityAmount = enviro.getEntityAmount();
 		for(int i = 0; i < entityAmount; i++){
 			if(enviro.getEntity(i) == this){

@@ -67,7 +67,11 @@ public class Bullet extends Entity{
 			if(!(indexedEnt instanceof Bullet) && this != indexedEnt){
 				if(isCollidedWith(indexedEnt)){
 					System.out.println(name + " has collided with " + indexedEnt.name);
-					removeSelfFromEnviroment(enviro);
+					if(indexedEnt instanceof SpawnedCube){
+						indexedEnt.removeSelfFromEnviroment();
+					} else{
+						removeSelfFromEnviroment();
+					}
 					return;
 				}
 			}
