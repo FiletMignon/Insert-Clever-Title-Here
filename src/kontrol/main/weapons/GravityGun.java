@@ -2,6 +2,8 @@ package kontrol.main.weapons;
 
 import java.util.ArrayList;
 
+import org.lwjgl.opengl.Display;
+
 import kontrol.main.Environment;
 import kontrol.main.entities.Bullet;
 import kontrol.main.entities.Entity;
@@ -11,7 +13,7 @@ import kontrol.main.util.Position;
 public class GravityGun extends Weapon {
 
 	public GravityGun() {
-		weaponType = WEPTYPE_SUPPORT_ENVIRONMENT;
+		super(WEPTYPE_SUPPORT_ENVIRONMENT);
 	}
 	private int framesSinceLastShot = 0;
 	private boolean canShoot = true;
