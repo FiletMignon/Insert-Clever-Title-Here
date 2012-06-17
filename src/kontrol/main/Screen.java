@@ -4,6 +4,8 @@ import java.nio.FloatBuffer;
 
 import kontrol.main.entities.Entity;
 import kontrol.main.entities.Player;
+import kontrol.main.render.effects.Lightning;
+import kontrol.main.util.Position;
 
 
 import org.lwjgl.BufferUtils;
@@ -44,6 +46,7 @@ public class Screen {
         while(running){
             if(Display.isCloseRequested())
             	running=false;
+    		initRenderLoop();
             render();
             inputHandling();
             enviro.actAllTheActions();
@@ -66,22 +69,28 @@ public class Screen {
 	public void setMainPlayer(Player player){
 		enviro.addPlayer(0, player);
 	}
+//	Lightning lightning;
 	public void addPlayer(Player player){
 		enviro.addPlayer(enviro.getAmountOfPlayers()-1, player);
+//		lightning = new Lightning("", 4, 4);
 	}
 	public Environment getEnvironment(){
 		return enviro;
 	}
 	
 	/**
-	 * Render stuff in between the two
-	 * RENDER STUFF brackets below.
+	 * Render stuff here
 	 */
 	private void render() {
-		initRenderLoop();
 		enviro.getPlayer(0).cameraView();
         //RENDER STUFF/////////////////////
 		enviro.renderAllTheEntities();
+//		lightning.render(new Position(0,0,0), new Position(8,0,0));
+//		lightning.render(new Position(0,0,0), new Position(-8,0,0));
+//		lightning.render(new Position(0,0,0), new Position(0,8,0));
+//		lightning.render(new Position(0,0,0), new Position(0,-8,0));
+//		lightning.render(new Position(0,0,0), new Position(0,0,8));
+//		lightning.render(new Position(0,0,0), new Position(0,0,-8));
         //RENDER STUFF/////////////////////
 	}
 	public void displayHUD(){

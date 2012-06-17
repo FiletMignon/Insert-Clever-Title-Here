@@ -5,6 +5,7 @@ import kontrol.main.physics.Acceleration;
 import kontrol.main.physics.BoundingBox;
 import kontrol.main.physics.Force;
 import kontrol.main.physics.Velocity;
+import kontrol.main.render.Model;
 import kontrol.main.util.Position;
 
 import org.lwjgl.opengl.GL11;
@@ -13,7 +14,6 @@ import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 public abstract class Entity {
-	protected Texture texture;
 	protected BoundingBox boundingBox;
 	protected Position pos;
 	protected Velocity vel;
@@ -23,8 +23,7 @@ public abstract class Entity {
 	protected String name;
 	protected Position gravity;
 	protected Position last;
-	
-	protected Environment enviro;
+	protected Model model;
 	
 	protected static long totalEntities = 1;
 	
@@ -34,16 +33,7 @@ public abstract class Entity {
 	 * @param boundingBox The bounding box of the entity
 	 * @param pos The position of the entity
 	 */
-	public Entity(String texture, BoundingBox boundingBox, Position pos, Environment enviro){
-		try {
-			this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + texture));
-		} catch (Exception d) {
-			try {
-				this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + "default.png"));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+	public Entity(String texturePath, BoundingBox boundingBox, Position pos, Environment enviro){
 		this.boundingBox = boundingBox;
 		this.pos = pos;
 		vel = new Velocity();
@@ -52,6 +42,7 @@ public abstract class Entity {
 		mass = 100;
 		name = this.getClass().getSimpleName() + ":" + totalEntities;
 		totalEntities++;
+		model = Model.generateRectangularPrismModel(texturePath, this.boundingBox.getWidth(), this.boundingBox.getHeight(), this.boundingBox.getDepth());
 	}
 	/**
 	 * Get the current Position of this entity
@@ -79,67 +70,8 @@ public abstract class Entity {
 	 * Override this method to render the correct entity
 	 */
 	public void render(){
-		float width = boundingBox.getWidth()/2;
-		float height = boundingBox.getHeight()/2;
-		float depth = boundingBox.getDepth()/2;
 		GL11.glTranslatef(pos.x(), pos.y(), pos.z());
-		texture.bind();
-	    GL11.glBegin(GL11.GL_QUADS);                        // Draw A Quad
-		    
-			GL11.glTexCoord2f(0.0f, 1.0f);
-		    GL11.glVertex3f( width, height,-depth);         // Top Right Of The Quad (Top)
-			GL11.glTexCoord2f(0.0f, 0.0f);
-		    GL11.glVertex3f(-width, height,-depth);         // Top Left Of The Quad (Top)
-			GL11.glTexCoord2f(1.0f, 0.0f);
-		    GL11.glVertex3f(-width, height, depth);         // Bottom Left Of The Quad (Top)
-			GL11.glTexCoord2f(1.0f, 1.0f);
-		    GL11.glVertex3f( width, height, depth);         // Bottom Right Of The Quad (Top)
-		
-			GL11.glTexCoord2f(1.0f, 1.0f);
-		    GL11.glVertex3f( width,-height, depth);         // Top Right Of The Quad (Bottom)
-			GL11.glTexCoord2f(0.0f, 1.0f);
-		    GL11.glVertex3f(-width,-height, depth);         // Top Left Of The Quad (Bottom)
-			GL11.glTexCoord2f(0.0f, 0.0f);
-		    GL11.glVertex3f(-width,-height,-depth);         // Bottom Left Of The Quad (Bottom)
-			GL11.glTexCoord2f(1.0f, 0.0f);
-		    GL11.glVertex3f( width,-height,-depth);         // Bottom Right Of The Quad (Bottom)
-		
-			GL11.glTexCoord2f(0.0f, 0.0f);
-		    GL11.glVertex3f( width, height, depth);         // Top Right Of The Quad (Front)
-		    GL11.glTexCoord2f(1.0f,0.0f);
-		    GL11.glVertex3f(-width, height, depth);         // Top Left Of The Quad (Front)
-		    GL11.glTexCoord2f(1.0f,1.0f);
-		    GL11.glVertex3f(-width,-height, depth);         // Bottom Left Of The Quad (Front)
-		    GL11.glTexCoord2f(0.0f,1.0f);
-		    GL11.glVertex3f( width,-height, depth);         // Bottom Right Of The Quad (Front)
-		
-			GL11.glTexCoord2f(1.0f, 0.0f);
-		    GL11.glVertex3f( width,-height,-depth);         // Bottom Left Of The Quad (Back)
-			GL11.glTexCoord2f(1.0f, 1.0f);
-		    GL11.glVertex3f(-width,-height,-depth);         // Bottom Right Of The Quad (Back)
-			GL11.glTexCoord2f(0.0f, 1.0f);
-		    GL11.glVertex3f(-width, height,-depth);         // Top Right Of The Quad (Back)
-			GL11.glTexCoord2f(0.0f, 0.0f);
-		    GL11.glVertex3f( width, height,-depth);         // Top Left Of The Quad (Back)
-		
-			GL11.glTexCoord2f(0.0f, 0.0f);
-		    GL11.glVertex3f(-width, height, depth);         // Top Right Of The Quad (Left)
-			GL11.glTexCoord2f(1.0f, 0.0f);
-		    GL11.glVertex3f(-width, height,-depth);         // Top Left Of The Quad (Left)
-			GL11.glTexCoord2f(1.0f, 1.0f);
-		    GL11.glVertex3f(-width,-height,-depth);         // Bottom Left Of The Quad (Left)
-			GL11.glTexCoord2f(0.0f, 1.0f);
-		    GL11.glVertex3f(-width,-height, depth);         // Bottom Right Of The Quad (Left)
-		
-			GL11.glTexCoord2f(1.0f, 0.0f);
-		    GL11.glVertex3f( width, height,-depth);         // Top Right Of The Quad (Right)
-			GL11.glTexCoord2f(1.0f, 1.0f);
-		    GL11.glVertex3f( width, height, depth);         // Top Left Of The Quad (Right)
-		    GL11.glTexCoord2f(0.0f, 1.0f);
-		    GL11.glVertex3f( width,-height, depth);         // Bottom Left Of The Quad (Right)
-		    GL11.glTexCoord2f(0.0f, 0.0f);
-		    GL11.glVertex3f( width,-height,-depth);         // Bottom Right Of The Quad (Right)
-		GL11.glEnd();
+		model.render();
 		GL11.glTranslatef(-pos.x(), -pos.y(), -pos.z());
 	}
 
@@ -262,7 +194,7 @@ public abstract class Entity {
 		pos.setY(pos.y()+vel.getYVelocity());
 		pos.setZ(pos.z()+vel.getZVelocity());
 	}
-	public void removeSelfFromEnviroment(){
+	public void removeSelfFromEnviroment(Environment enviro){
 		int entityAmount = enviro.getEntityAmount();
 		for(int i = 0; i < entityAmount; i++){
 			if(enviro.getEntity(i) == this){

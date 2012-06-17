@@ -8,6 +8,7 @@ import kontrol.main.entities.Cube;
 import kontrol.main.entities.Entity;
 import kontrol.main.entities.Player;
 import kontrol.main.entities.SpawnedCube;
+import kontrol.main.entities.TrackingBullet;
 import kontrol.main.physics.BoundingBox;
 import kontrol.main.util.Position;
 
@@ -26,7 +27,7 @@ public class Pistol extends Weapon{
 			Position posToShootFrom = new Position(xPos, yPos, zPos);
 			Position posToShootTo = Position.screenToWorld(Display.getWidth()/2, Display.getHeight()/2);
 			//TODO Make sure the gun shoots forward
-			shoot(new Bullet(posToShootFrom, posToShootTo, enviro), enviro);
+			shoot(new TrackingBullet(posToShootFrom, posToShootTo, enviro), enviro);
 			System.out.println(this.getClass().getSimpleName() + " Fired!");
 		}
 		if(!canShoot){

@@ -1,4 +1,4 @@
-package kontrol.main.render;
+package kontrol.main.render.effects;
 
 import java.util.Random;
 
@@ -9,7 +9,7 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-public class Lightning {
+public class Lightning extends Effect{
 	private Texture texture;
 	private Random rand;
 

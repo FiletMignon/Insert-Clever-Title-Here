@@ -45,18 +45,11 @@ public class Player extends Entity {
 		//Render Nothing
 	}
 	
-	private int displayShow = 0;
-	private int frames = 0;
 	public void hud(){
 		if(health < 1){
 			
 		}
 		else{
-			frames++;
-			if(frames > 60){
-				health--;
-				frames = 0;
-			}
 			displayHealthHUD();
 			GL11.glTranslatef(Display.getWidth()/2, Display.getHeight()/2, 0);
 			GL11.glBegin(GL11.GL_LINE_LOOP);

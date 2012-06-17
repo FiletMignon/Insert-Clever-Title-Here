@@ -4,6 +4,7 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
@@ -162,6 +163,9 @@ public class Position {
         GL11.glReadPixels( x, (int)winY, 1, 1, GL11.GL_DEPTH_COMPONENT,  GL11.GL_FLOAT, winZ);
         GLU.gluUnProject( winX, winY, winZ.get(0), modelview, projection, viewport, pos);
         return new Position(pos.get(0),pos.get(1),pos.get(2));
+	}
+	public static Position lookingAt(){
+		return screenToWorld(Display.getWidth()/2, Display.getHeight()/2);
 	}
 	public float distanceTo(Position pos){
 		double sqX = Math.pow(pos.x()-x(), 2);

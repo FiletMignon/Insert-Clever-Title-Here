@@ -32,7 +32,7 @@ public class SegmentDisplay {
 			this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + texture));
 		} catch (Exception d) {
 			try {
-				this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + "blank.png"));
+				this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + "SegmentDisplay.png"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
