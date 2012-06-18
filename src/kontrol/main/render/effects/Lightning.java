@@ -12,8 +12,10 @@ import org.newdawn.slick.util.ResourceLoader;
 public class Lightning extends Effect{
 	private Texture texture;
 	private Random rand;
+	private int arcs;
 
-	public Lightning(String texture, int arcsMin, int arcsMax){
+	public Lightning(String texture, int arcs){
+		super();
 		try {
 			this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + texture));
 		} catch (Exception d) {
@@ -23,11 +25,11 @@ public class Lightning extends Effect{
 				e.printStackTrace();
 			}
 		}
+		this.arcs = arcs;
 		rand = new Random();
 	}
 	
 	public void render(Position pos1, Position pos2){
-		int arcs = 4;
 		texture.bind();
 		GL11.glBegin(GL11.GL_LINES);
 			GL11.glTexCoord2f(0.0f, 0.0f);
