@@ -12,7 +12,7 @@ public class Bullet extends Entity{
 		super("bullet.png", new BoundingBox(0.05f, 0.05f, 0.05f), shootFrom, enviro);
 		this.shootTo = new Position(shootTo.x(), shootTo.y(), shootTo.z());
 		this.mass = 5;
-		this.setForce(this.shootTo, 10f);
+		this.setForce(this.shootTo, 25f);
 	}
 	public void act(Environment enviro){
 		applyVelocity();

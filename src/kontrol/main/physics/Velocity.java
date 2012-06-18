@@ -1,8 +1,6 @@
-/**
- * 
- */
 package kontrol.main.physics;
-
+import java.nio.FloatBuffer;
+import org.lwjgl.BufferUtils;
 
 /**
  * @author wiful
@@ -47,5 +45,13 @@ public class Velocity {
 		xVel = xVel + accel.getXAcceleration() * 1/60.f;
 		yVel = yVel + accel.getYAcceleration() * 1/60.f;
 		zVel = zVel + accel.getZAcceleration() * 1/60.f;
+	}
+	public static FloatBuffer getVelocityBuffer(Velocity vel){
+		FloatBuffer returnValue = BufferUtils.createFloatBuffer(3);
+		returnValue.put(vel.getXVelocity());
+		returnValue.put(vel.getYVelocity());
+		returnValue.put(vel.getZVelocity());
+		returnValue.flip();
+		return returnValue;
 	}
 }

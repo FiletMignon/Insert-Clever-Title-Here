@@ -9,9 +9,6 @@ import kontrol.main.render.Model;
 import kontrol.main.util.Position;
 
 import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
-import org.newdawn.slick.util.ResourceLoader;
 
 public abstract class Entity {
 	protected BoundingBox boundingBox;

@@ -140,6 +140,34 @@ public class Position {
 	public Position inverse() {
 		return new Position(-x, -y, -z, xRot, yRot, zRot);
 	}
+	/**
+	 * Return a FloatBuffer containg the (X, Y, Z) coords of
+	 * the Position pos
+	 * @param pos The position to obtain a buffer from
+	 * @return A float buffer the pos's 
+	 */
+	public static FloatBuffer getLocationBuffer(Position pos){
+		FloatBuffer returnValue = BufferUtils.createFloatBuffer(3);
+		returnValue.put(pos.x());
+		returnValue.put(pos.y());
+		returnValue.put(pos.z());
+		returnValue.flip();
+		return returnValue;
+	}
+	/**
+	 * Return a FloatBuffer containg the (X, Y, Z) rotations of
+	 * the Position pos
+	 * @param pos The position to obtain a buffer from
+	 * @return A float buffer containing the pos's 
+	 */
+	public static FloatBuffer getRotationBuffer(Position pos){
+		FloatBuffer returnValue = BufferUtils.createFloatBuffer(3);
+		returnValue.put(pos.xRot());
+		returnValue.put(pos.yRot());
+		returnValue.put(pos.zRot());
+		returnValue.flip();
+		return returnValue;
+	}
 	public static Position screenToWorld(int x, int y){
 		int[] v = new int[16];
         IntBuffer viewport = BufferUtils.createIntBuffer(16).put(v);  
