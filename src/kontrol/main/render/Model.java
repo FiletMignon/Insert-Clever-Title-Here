@@ -26,10 +26,10 @@ public class Model {
 	    
 	    if(texturePath != null){
 			try {
-				texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + texturePath));
+				texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/textures/" + texturePath));
 			} catch (Exception d) {
 				try {
-					texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + "default.png"));
+					texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/textures/" + "default.png"));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -37,7 +37,7 @@ public class Model {
 	    }
 	    else{
 			try {
-				texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + "blank.png"));
+				texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/textures/" + "blank.png"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

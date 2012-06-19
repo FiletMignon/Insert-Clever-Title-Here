@@ -69,10 +69,10 @@ public class Screen {
 	public void setMainPlayer(Player player){
 		enviro.addPlayer(0, player);
 	}
-//	Lightning lightning;
+	Lightning lightning;
 	public void addPlayer(Player player){
 		enviro.addPlayer(enviro.getAmountOfPlayers()-1, player);
-//		lightning = new Lightning("", 4, 4);
+		lightning = new Lightning("", 4);
 	}
 	public Environment getEnvironment(){
 		return enviro;
@@ -85,12 +85,12 @@ public class Screen {
 		enviro.getPlayer(0).cameraView();
         //RENDER STUFF/////////////////////
 		enviro.renderAllTheEntities();
-//		lightning.render(new Position(0,0,0), new Position(8,0,0));
-//		lightning.render(new Position(0,0,0), new Position(-8,0,0));
-//		lightning.render(new Position(0,0,0), new Position(0,8,0));
-//		lightning.render(new Position(0,0,0), new Position(0,-8,0));
-//		lightning.render(new Position(0,0,0), new Position(0,0,8));
-//		lightning.render(new Position(0,0,0), new Position(0,0,-8));
+		lightning.render(new Position(0,0,0), new Position(8,0,0));
+		lightning.render(new Position(0,0,0), new Position(-8,0,0));
+		lightning.render(new Position(0,0,0), new Position(0,8,0));
+		lightning.render(new Position(0,0,0), new Position(0,-8,0));
+		lightning.render(new Position(0,0,0), new Position(0,0,8));
+		lightning.render(new Position(0,0,0), new Position(0,0,-8));
         //RENDER STUFF/////////////////////
 	}
 	public void displayHUD(){

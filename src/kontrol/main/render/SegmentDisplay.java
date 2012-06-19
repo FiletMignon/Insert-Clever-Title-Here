@@ -29,10 +29,10 @@ public class SegmentDisplay {
 		this.height = height+0.125f;
 		this.pos = pos;
 		try {
-			this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + texture));
+			this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/textures/" + texture));
 		} catch (Exception d) {
 			try {
-				this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + "SegmentDisplay.png"));
+				this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/textures/" + "SegmentDisplay.png"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -9,7 +9,7 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-public class Lightning extends Effect{
+public class Lightning{
 	private Texture texture;
 	private Random rand;
 	private int arcs;
@@ -17,10 +17,10 @@ public class Lightning extends Effect{
 	public Lightning(String texture, int arcs){
 		super();
 		try {
-			this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + texture));
+			this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/textures/" + texture));
 		} catch (Exception d) {
 			try {
-				this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/" + "lightning.png"));
+				this.texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("src/textures/" + "lightning.png"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -32,9 +32,7 @@ public class Lightning extends Effect{
 	public void render(Position pos1, Position pos2){
 		texture.bind();
 		GL11.glBegin(GL11.GL_LINES);
-			GL11.glTexCoord2f(0.0f, 0.0f);
 			pointsToRenderRecur(pos1, pos2, arcs);
-//			GL11.glTexCoord2f(0.0f, 1.0f);
 		GL11.glEnd();
 	}
 	private void pointsToRenderRecur(Position pos1, Position pos2, float count){
